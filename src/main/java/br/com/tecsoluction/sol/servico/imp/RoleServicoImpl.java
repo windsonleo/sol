@@ -1,0 +1,41 @@
+package br.com.tecsoluction.sol.servico.imp;
+
+import javax.persistence.Entity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import br.com.tecsoluction.sol.dao.IRoleDao;
+import br.com.tecsoluction.sol.entidade.Role;
+import br.com.tecsoluction.sol.entidade.Usuario;
+import br.com.tecsoluction.sol.framework.AbstractEntityService;
+import br.com.tecsoluction.sol.servico.IRoleServico;
+
+
+
+@Service
+public class RoleServicoImpl extends AbstractEntityService<Role>implements IRoleServico {
+
+	@Autowired
+	private 
+	IRoleDao roledao;
+	
+//	private Entity entityClass;
+	
+
+	public RoleServicoImpl() {
+		
+		super(Role.class,"role");
+	
+
+		
+		}
+
+	@Override
+	protected JpaRepository<Role, Long> getDao() {
+		// TODO Auto-generated method stub
+		return roledao;
+	}
+
+}

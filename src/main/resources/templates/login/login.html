@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/head :: head-css"/>
+    <title>Login</title>
+
+
+<body class="login">
+
+	<div class="container">
+
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+			<form method="post" th:object="${usuario}">
+              <h1>Autorizacao</h1>
+              <div>
+		    	<input type="text" id="username" name="username" class="form-control"
+		           th:value="${username}" />
+		           
+		      </div>
+              <div>
+		    	<input type="password" id="senha" name="senha" class="form-control"
+		           th:value="${senha}"/>
+		      </div>
+		      
+              <div>
+		   		 <input type="submit" value="login" class="btn btn-sm-info"/>
+                	<a class="reset_pass" href="#">Perdeu sua Senha?</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Voce e novo por aqui?
+                  <a href="#signup" class="to_register"> Crie sua Conta </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> Tecsoluction </h1>
+<!--                   <h4>Solucoes em Tecnlogia</h4> -->
+                  <p>©2017 All Rights Reserved. Tecsoluction</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form>
+              <h1>Crie Sua Conta</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="index.html">Submit</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+<!--                 <div> -->
+<!--                   <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> -->
+<!--                   <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p> -->
+<!--                 </div> -->
+
+
+			<footer th:replace="fragmentos/footer :: footer"/>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+      
+  </body>
+  
+
+
+
+</html>
