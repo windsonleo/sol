@@ -16,7 +16,7 @@ public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implement
 		
 
 		@Autowired
-	    private IUsuarioDao userRepository;
+	    private IUsuarioDao dao;
 	    
 
 
@@ -33,7 +33,7 @@ public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implement
 		
 //		user.setRoles(new HashSet<>());
 //		userRepository.save(user);
-		getDao().save(user);
+		dao.saveAndFlush(user);
 		
 		return user;
 		
@@ -44,15 +44,17 @@ public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implement
 		
 		
 
-		return userRepository.findByUsername(username);
+		return dao.findByUsername(username);
 	}
 
 
 	@Override
 	protected JpaRepository<Usuario, Long> getDao() {
-
-		return userRepository;
+		// TODO Auto-generated method stub
+		return dao;
 	}
+
+
 
 	
 

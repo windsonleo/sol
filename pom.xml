@@ -6,7 +6,7 @@
 	<groupId>br.com.tecsoluction</groupId>
 	<artifactId>sol</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>sol</name>
 	<description>Demo project for Spring Boot</description>
@@ -72,6 +72,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        
+<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+    </dependency>        
         
               	        <dependency> 
             <groupId>org.postgresql</groupId> 
@@ -189,10 +195,10 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.springframework.boot</groupId> -->
+<!-- 				<artifactId>spring-boot-maven-plugin</artifactId> -->
+<!-- 			</plugin> -->
 			
 			 <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

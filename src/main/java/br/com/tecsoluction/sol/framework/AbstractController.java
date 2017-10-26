@@ -3,6 +3,7 @@ package br.com.tecsoluction.sol.framework;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -18,8 +19,9 @@ public abstract class AbstractController<Entity> {
 
     private final String entityAlias;
     
-     protected AbstractEntityService<Entity> EntityService;
+     protected abstract AbstractEntityService<Entity> getservice();
      
+    
 
     public AbstractController(String entityAlias) {
         this.entityAlias = entityAlias;
@@ -52,7 +54,7 @@ public abstract class AbstractController<Entity> {
         
     	}else{
     		
-    		EntityService.save(entity);
+    		getservice().save(entity);
             System.out.println("add:"+ entityAlias);
             attributes.addFlashAttribute("mensagem", "Sucesso ao Salvar.");
             attributes.addFlashAttribute("entity", entity.toString());
@@ -72,7 +74,7 @@ public abstract class AbstractController<Entity> {
 
         ModelAndView movimentacao = new ModelAndView("movimentacao" + entityAlias);
 
-        List<Entity> entityList = EntityService.findAll();
+        List<Entity> entityList = getservice().findAll();
         movimentacao.addObject(entityAlias + "List", entityList);
 
         return entityAlias+"/"+ "movimentacao";
@@ -84,7 +86,7 @@ public abstract class AbstractController<Entity> {
 
         Entity entity;
         long idf = Long.parseLong(request.getParameter("id"));
-        entity = EntityService.findOne(idf);
+        entity = getservice().findOne(idf);
 
 
 
@@ -93,25 +95,33 @@ public abstract class AbstractController<Entity> {
 
     @Transactional
     @RequestMapping(value = "edicao", method = RequestMethod.POST)
-    public String editarEntity(@ModelAttribute @Valid Entity entity,BindingResult result
-	, RedirectAttributes attributes,HttpServletRequest request){
+    public ModelAndView editarEntity(@ModelAttribute @Valid Entity entity,BindingResult result
+	, RedirectAttributes attributes,HttpServletRequest request,HttpSession session){
+    	
+    	ModelAndView mv = new ModelAndView("home");
        
-    	Long idf = Long.parseLong(request.getParameter("id"));
+    	
+    	
+//    	Long idf = Long.parseLong(.;
 
     	if (result.hasErrors()) {
 			
             
             System.out.println("erro ao Editar:"+ entityAlias+"erro:"+result.getObjectName());
-//            attributes.addFlashAttribute("erros", "Erro ao Salvar."+result.getFieldError());
+            attributes.addFlashAttribute("mensagem", "Erro ao Salvar."+result.getFieldError());
 //            attributes.a
+            
+            mv.addObject("mensagem", result.getFieldError());
+            
             
         	}else{
         		
-        		EntityService.save(entity);
+        		getservice().save(entity);
                 System.out.println("add:"+ entityAlias);
                 attributes.addFlashAttribute("mensagem", "Sucesso ao Editar.");
-                attributes.addFlashAttribute("entity", entity.toString());
+//                attributes.addFlashAttribute("entity", entity.toString());
 
+                mv.addObject("mensagem", "Sucesso ao Editar");
 
 
 
@@ -120,7 +130,9 @@ public abstract class AbstractController<Entity> {
 //    	EntityService.save(entity);
 
 
-        return "redirect:/" + entityAlias + "/" + "movimentacao";
+//        return "redirect:/" + entityAlias + "/" + "home";
+    	
+    	return mv;
     }
 
     @Transactional
@@ -132,7 +144,7 @@ public abstract class AbstractController<Entity> {
 //        Entity entity;
 //        entity = EntityService.findOne(idf);
 //		ModelAndView movimentacaocategoria = new ModelAndView("movimentacaocategoria");
-        EntityService.delete(idf);
+        getservice().delete(idf);
         attributes.addFlashAttribute("mensagem", "Sucesso ao Deletar.");
 //        attributes.addFlashAttribute("entity", entity.toString());
 

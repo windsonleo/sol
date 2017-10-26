@@ -1,18 +1,22 @@
 package br.com.tecsoluction.sol.controller;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -39,8 +45,8 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @Controller
 public class LoginController {
 	
-    @Autowired
-    private ServicoNotificacaoImpl notificacaoService;
+//    @Autowired
+//    private ServicoNotificacaoImpl notificacaoService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
@@ -49,6 +55,11 @@ public class LoginController {
 
 	
 	private Usuario usuario;
+	
+	@Autowired 
+	private ServletContext contexto = null;
+	
+	private String filenamef = null;
 	
 //	private HttpSession session;
 	 
@@ -112,7 +123,7 @@ public class LoginController {
     @RequestMapping(value ={"/accessdenied"}, method = RequestMethod.GET)
 	public ModelAndView  AcessDenied(HttpServletRequest request){
   	
-    	ModelAndView accessdenied = new ModelAndView("accessdenied");
+    	ModelAndView accessdenied = new ModelAndView("/login/accessdenied");
 //    	login.addObject("usuario", new Usuario());
     	
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
@@ -123,11 +134,11 @@ public class LoginController {
 	}
     
     
-    
-    @RequestMapping(value = "/form_upload",method = RequestMethod.POST)
-    public String UploadAudio(@RequestParam CommonsMultipartFile file,HttpSession session,HttpServletRequest request,Model model) {
-    	
-//    	this.usuario =  ususervice.findByUsername(usuario.getUsername());
+
+//    @RequestMapping(value = "/form_upload",method = RequestMethod.POST)
+//    public String UploadAudio(@RequestParam("file") MultipartFile   file,HttpSession session,HttpServletRequest request,Model model) {
+//    	
+////    	this.usuario =  ususervice.findByUsername(usuario.getUsername());
 //
 //        if (this.usuario.getUsername() != usuario.getUsername()) {
 //            notificacaoService.addErrorMessage(
@@ -143,55 +154,102 @@ public class LoginController {
 //        // Login successful
 //        notificacaoService.addInfoMessage("sucesso!");
     	
-
-
-
-    	String mensagem = "Sucesso ao salvar foto";
-    	String erros = "Falha ao salvar foto";
-
-    	
-    	String path=session.getServletContext().getRealPath("/");  
-    	
-    	String d = request.getContextPath();
-    	
-    	String camfoto = null;
-    	
-    	String pathh = "/resources/static/audio/";
-    	//string pathh = file.get
-        String filename=file.getOriginalFilename();  
-          
-        System.out.println("Caminho"+path+" "+filename);  
-        
-    	System.out.println("request end" + d + pathh+"/"+filename);
-    	camfoto = "audio/"+filename;
-        
-        try{ 
-        	
-        byte barr[]=file.getBytes();  
-          
-        BufferedOutputStream bout=new BufferedOutputStream(  
-                 new FileOutputStream(path+pathh+"/"+filename));  
-        bout.write(barr);  
-        bout.flush();  
-        bout.close();  
-        
-        model.addAttribute("mensagem", mensagem);
-        model.addAttribute("filename", camfoto);
-//        model.addAttribute("audio", produtocomposto);
-        model.addAttribute("acao", "add");
-
-
-          
-        }catch(Exception e){
-        	
-        	System.out.println(e);
-        	
-        	model.addAttribute("erros", erros + e);
-        
-        } 
-        
-        return null;
-    }
+//    	
+//    	long id = Long.parseLong(request.getParameter("usuarioid"));
+//    	
+//    	Usuario usuario = ususervice.findOne(id);
+//    	
+//    	
+//    	ModelAndView home = new ModelAndView("home");
+//    	
+//    	home.addObject("usuario", usuario);
+//
+//
+//    	String mensagem = "Sucesso ao salvar foto";
+//    	String erros = "Falha ao salvar foto";
+//
+////    	funfa
+////    	String path=session.getServletContext().getRealPath("/resources");
+//
+//    	String path=session.getServletContext().getRealPath("/WEB-INF/classes/static/audio/");
+//    	
+//    	
+//
+//    	
+//    	
+//        System.out.println("path:"+path);  
+//
+//
+//    	
+//    	String camfoto = null;
+//    	
+////    	String pathh = "\\static\\audio\\";
+//    	//string pathh = file.get
+//         this.filenamef=file.getOriginalFilename();  
+//          
+//
+//    	
+//    	
+//    	camfoto = "audio\\"+filenamef;
+//    	String camfoto2 = path+"\\"+filenamef;
+//    	
+//    	 System.out.println("camfoto2"+ camfoto2);
+//    	 System.out.println("camfoto1"+ camfoto);
+//
+//    	 
+//    	 String diretorio = null;
+//    	 
+//    	 File dir = new File(path);
+//    	 
+//    	 
+//    	
+//
+//    	 if (!dir.exists()){
+//             dir.mkdirs();
+//    	 }
+//    	 
+//    	 
+//        try{ 
+//        	
+//        byte barr[]=file.getBytes();  
+//        
+//      File serverFile = new File(dir.getAbsolutePath() + File.separator + filenamef);
+//
+//          
+//        BufferedOutputStream bout=new BufferedOutputStream(  
+//                 new FileOutputStream(serverFile));  
+//        
+////        BufferedOutputStream bout=new BufferedOutputStream(  
+////                new FileOutputStream(pathh+"/"+filename));
+//        
+////        BufferedOutputStream bout=new BufferedOutputStream(  
+////                new FileOutputStream(contexto.getResourceAsStream("/resources/static/audio/")+filename));
+//        
+//      
+////        String rootPath = System.getProperty("C:\\Users\\teste\\Downloads");
+//
+//        
+//        
+//        bout.write(barr);  
+//        bout.flush();  
+//        bout.close();  
+//        
+//
+//    	home.addObject("filename", serverFile.getAbsolutePath());
+//    	home.addObject("filename2", "audio/"+filenamef);
+//
+//
+//          
+//        }catch(Exception e){
+//        	
+//        	System.out.println(e);
+//        	
+//        	home.addObject("filename2", "audio/"+filenamef);
+//
+//        } 
+//        
+//        return "redirect:/home" ;
+//    }
 //    
 //	@RequestMapping(value = "/login", method = RequestMethod.POST)
 //	public ModelAndView  LoginEnvio(HttpServletRequest request){
@@ -227,7 +285,7 @@ public class LoginController {
     @RequestMapping(value = "/error", method = RequestMethod.GET)
 	public ModelAndView  ErrorEx(){
   	
-    	ModelAndView error = new ModelAndView("/error");
+    	ModelAndView error = new ModelAndView("/login/error");
     	
 		
   	return error;	
@@ -238,54 +296,59 @@ public class LoginController {
     @RequestMapping(value = "/erro", method = RequestMethod.GET)
 	public ModelAndView  ErrorE(){
   	
-    	ModelAndView error = new ModelAndView("/erro");
+    	ModelAndView error = new ModelAndView("/login/erro");
     	
 		
   	return error;	
   	
 	}
 //	@SuppressWarnings("null")
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView  Home(HttpServletRequest request){
-  	
+//	@RequestMapping(value = "/home", method = RequestMethod.GET)
+//	public ModelAndView  Home(HttpServletRequest request, HttpSession session){
+//  	
 
   	
-  	ModelAndView home = new ModelAndView("home");
-  	
-//  	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-  		Usuario usuario =  new Usuario();
-		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		usuario = ususervice.findByUsername(usuario.getUsername());
-		
-		if(usuario.getUsername() == null){
-			
-			usuario.setUsername("Maria");
-			System.out.println(" Windson if logincontroller Usuario :"+ usuario.getUsername());
-		}
-		
-		System.out.println(" Windson fora if logincontroller Usuario :"+ usuario.getUsername());
-
-	
-//	List<String> tesste = null ;
+//  	ModelAndView home = new ModelAndView("home");
+//  	
+////  	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//  		Usuario usuario =  new Usuario();
+//		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+//		
+//		usuario = ususervice.findByUsername(usuario.getUsername());
+//		
+//		if(usuario.getUsername() == null){
+//			
+//			usuario.setUsername("Maria");
+//			System.out.println(" Windson if logincontroller Usuario :"+ usuario.getUsername());
+//		}else{
+//			
+//			session.setAttribute("usuario", usuario);
+//		}
+//		
+//		System.out.println(" Windson fora if logincontroller Usuario :"+ usuario.getUsername());
+//
 //	
-//	String teste ="teste1";
-//	String teste2 ="teste2";
-//	String teste3 ="teste3";
+////	List<String> tesste = null ;
+////	
+////	String teste ="teste1";
+////	String teste2 ="teste2";
+////	String teste3 ="teste3";
+////	
+////	tesste.add(teste);
+////	tesste.add(teste2);
+////	tesste.add(teste3);
+//
+//
 //	
-//	tesste.add(teste);
-//	tesste.add(teste2);
-//	tesste.add(teste3);
-
-
-	
-	home.addObject("usuario", usuario);
-//	home.addObject("teste",tesste);
-	
-		
-  	return home;	
-  	
-	}
+//	home.addObject("usuario", usuario);
+//	home.addObject("filename2","audio/"+filenamef);
+//	home.addObject("filenamef", filenamef);
+//
+//	
+//		
+//  	return home;	
+//  	
+//	}
 	
 	
 }

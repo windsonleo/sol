@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragmentos/head :: head-css" />
-    <title>Erro dentro</title>
+<head th:replace="fragmentos/head :: head-css">
+    <title>Erro fora sem R</title>
 </head>
-
 <body>
-<header th:replace="fragmentos/header :: header" />
+<!-- <header th:replace="fragmentos/header :: header" /> -->
 
 <aside>
-    <h2>Erro Erro Erro </h2>
-    <a href="#" th:each="p : ${latest5posts}" th:text="${p.title}"
+    <h2>Erro Erro Erro dENTRO </h2>
+    <a href="#" th:each="p : ${latest5psts}" th:text="${p.title}"
        th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
 </aside>
 
 <main id="posts">
-dddd
+
 </main>
 
-<footer th:replace="fragmentos/footer :: footer" />
-
+<footer th:replace="fragmentos/footer ::footer" />
 </body>
 
 </html>

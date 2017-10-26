@@ -55,43 +55,43 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**").permitAll()
+				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","/favicon.ico/**").permitAll()
 				.antMatchers("/login").permitAll()
 //				.antMatchers("/registration").permitAll()
 				.antMatchers("/home").hasRole("MEMBRO")
 
 				.antMatchers("/adm/**").hasAuthority("ADM").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/erro")
-				.defaultSuccessUrl("/home")
+				.loginPage("/login").failureUrl("/error/erro")
+				.defaultSuccessUrl("/usuario/home")
 				.usernameParameter("username")
 				.passwordParameter("senha")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login").and().exceptionHandling()
-				.accessDeniedPage("/accessdenied");
+				.logoutSuccessUrl("/sol/login").and().exceptionHandling()
+				.accessDeniedPage("/error/accessdenied");
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**","/webjars/**", "/web/**","/build/**","/vendors/**","/audio/**","/templates/**");
+	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**","/webjars/**", "/web/**","/build/**","/vendors/**","/audio/**","/templates/**","/favicon.ico/**");
 	
 //	    web.ignoring()
 //	    	.antMatchers("/web/**","/js/**","/css/**","/build/**","/vendors/**");
 	}
 	
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password("password").roles("MEMBRO")
-//                .and()
-//                .withUser("admin").password("password").roles("ADM");
-//    }
-//	
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication()
+                .withUser("user").password("password").roles("MEMBRO")
+                .and()
+                .withUser("admin").password("password").roles("ADM");
+    }
+	
 	
 	
 }

@@ -38,4 +38,6 @@ public class RoleServicoImpl extends AbstractEntityService<Role>implements IRole
 		return roledao;
 	}
 
+
+
 }

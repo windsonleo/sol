@@ -13,10 +13,7 @@ public class ThymeleafeConf  {
 	
     private static final String UTF8 = "UTF-8";
     
-    
-    
-	
-	
+
 	   @Bean
 	    public ViewResolver viewResolver() {
 	        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -24,14 +21,14 @@ public class ThymeleafeConf  {
 	        resolver.setCharacterEncoding(UTF8);
 	        return resolver;
 	    }
-
+	  
 	    private SpringTemplateEngine templateEngine() {
 	      
 	    	SpringTemplateEngine engine = new SpringTemplateEngine();
 	        engine.setTemplateResolver(templateResolver());
 	        return engine;
 	    }
-
+	  
 	    private ITemplateResolver templateResolver() {
 	        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 	        resolver.setPrefix("/resources/templates/");
