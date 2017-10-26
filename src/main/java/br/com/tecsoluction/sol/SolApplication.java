@@ -130,7 +130,7 @@ public class SolApplication  extends SpringBootServletInitializer {
     public DataSource dataSource(Environment environment) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgres://ec2-107-21-205-25.compute-1.amazonaws.com:5432/d2hkmq294b94qq?useSSL=true");
+        dataSource.setUrl("jdbc:postgres://ec2-107-21-205-25.compute-1.amazonaws.com:5432/d2hkmq294b94qq");
         dataSource.setUsername("uohsqhivlmuqjt");
         dataSource.setPassword("90ca602459038d0e90bbe552c7f251975b02941b90030c8ab3b96d95cddbc18c");
         return dataSource;
@@ -173,7 +173,7 @@ public class SolApplication  extends SpringBootServletInitializer {
         va.setDatabasePlatform(" org.hibernate.dialect.PostgreSQLDialect");
 
         Properties ps = new Properties();
-        ps.put("spring.jpa.properties.hibernate.dialect", " org.hibernate.dialect.PostgreSQLDialect");
+//        ps.put("spring.jpa.properties.hibernate.dialect", " org.hibernate.dialect.PostgreSQLDialect");
         ps.put("spring.jpa.hibernate.ddl-auto", "update");
 		ps.put("useSSL","false");
 //		ps.put("security.basic.enabled","false");
