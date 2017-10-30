@@ -276,7 +276,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         } 
         
-        return Home(request, session);
+//        return Home(request, session);
+        
+        return new ModelAndView("redirect:/usuario/home");	    
+        
     }
 
 

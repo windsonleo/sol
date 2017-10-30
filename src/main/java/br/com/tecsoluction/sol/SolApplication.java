@@ -115,26 +115,26 @@ public class SolApplication  extends SpringBootServletInitializer {
     }
 	
 	
-//	@Bean(name="dataSource")
-//    public DataSource dataSource(Environment environment) {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/sol?useSSL=false");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("123456");
-//        return dataSource;
-//    }
-	
-	
 	@Bean(name="dataSource")
     public DataSource dataSource(Environment environment) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgres://ec2-107-21-205-25.compute-1.amazonaws.com:5432/d2hkmq294b94qq");
-        dataSource.setUsername("uohsqhivlmuqjt");
-        dataSource.setPassword("90ca602459038d0e90bbe552c7f251975b02941b90030c8ab3b96d95cddbc18c");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/sol?useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
         return dataSource;
     }
+	
+	
+//	@Bean(name="dataSource")
+//    public DataSource dataSource(Environment environment) {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.postgresql.Driver");
+//        dataSource.setUrl("jdbc:postgres://ec2-107-21-205-25.compute-1.amazonaws.com:5432/d2hkmq294b94qq");
+//        dataSource.setUsername("uohsqhivlmuqjt");
+//        dataSource.setPassword("90ca602459038d0e90bbe552c7f251975b02941b90030c8ab3b96d95cddbc18c");
+//        return dataSource;
+//    }
 
 
 	public static void main(String[] args) {
@@ -165,15 +165,15 @@ public class SolApplication  extends SpringBootServletInitializer {
 
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
         lcemfb.setJpaVendorAdapter(va);
-//        va.setDatabase(Database.MYSQL);
-        va.setDatabase(Database.POSTGRESQL);
+        va.setDatabase(Database.MYSQL);
+//        va.setDatabase(Database.POSTGRESQL);
 
         va.setGenerateDdl(true);
         va.setShowSql(true);
-        va.setDatabasePlatform(" org.hibernate.dialect.PostgreSQLDialect");
+        va.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
 
         Properties ps = new Properties();
-//        ps.put("spring.jpa.properties.hibernate.dialect", " org.hibernate.dialect.PostgreSQLDialect");
+        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         ps.put("spring.jpa.hibernate.ddl-auto", "update");
 		ps.put("useSSL","false");
 //		ps.put("security.basic.enabled","false");

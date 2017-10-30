@@ -87,7 +87,7 @@ public class LoginController {
 //        Usuario usuario = new Usuario();
 //  		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //  		usuario = ususervice.findByUsername(usuario.getUsername()); 
-//  		model.addAttribute("usuario", usuario);
+//  		model.addAttribute("usuario", new Usuario());
 
 
 

@@ -51,7 +51,7 @@
 		var value2 = document.getElementById("desc2").value;
 		var valuenew;
 		
-		if(value2 === 'undefined' || value2===null){
+		if(value2 === 'undefined' || value2 === null){
 			
 			valuenew = value1;
 			
@@ -85,19 +85,142 @@
 function AtualizaContadorAudio() {
 	  
 
-		var player = document.getElementById('demo');    
-		var currentTime = player.currentTime;
+		var player = document.getElementById("demo");    
+// 		var currentTime = player.currentTime;
 	    var duration = player.duration;
-		var valuenew = player.seekable.end();
-		var valuenewtime = currentTime;
+// 		var valuenew = player.seekable.end();
+// 		var valuenewtime = currentTime;
 	
+		var newprogress = player.currentTime;
 		
-		
-	
-        document.getElementById("range").max = valuenew;
-        document.getElementById("range").value = valuenewtime;
+		var div = document.getElementById("pval");
 
-        document.getElementById("pval").value = duration;
+		
+		document.getElementById("weight").setAttribute('aria-valuenow', newprogress);
+// 		document.getElementById("pval").setAttribute('text', newprogress.toFixed(2) + "%");
+		document.getElementById("weight").setAttribute('aria-valuemax', duration);
+		document.getElementById("progress").setAttribute('width', newprogress / duration * 100 + "%");
+
+		
+		document.getElementById("weight").style.width = newprogress/duration * 100 + "%";
+// 		document.getElementById("weight").style.width = "900";
+// 		document.getElementById("weight").style.width = "900";
+
+
+//         var
+
+// 		var atual = player.currentTime;
+		
+// 		var duracao = player.duration - atual;
+	
+// 		var contadorseg = duracao;
+		
+// 		var conts = duration.toFixed(0);
+		
+// 		var contadormin = contadorseg / 60 ;
+		
+// 		var contm=contadormin.toFixed(0);
+		
+
+// 		var restoseg = contadormin % 60;
+		
+// 		var resto = restoseg.toFixed(0);
+		
+// 		var rel = atual % duracao ;
+		
+// 		var mintemp = 00;
+		
+// 		rel.toFixed(0);
+		
+// 		if(rel = 60){
+			
+// 			mintemp = mintemp + 1;
+// // 			rel = 0;
+			
+// 		}
+		
+		
+// 		var temp = mintemp + ":" + rel ;
+		
+// 		var contadormin = contadorseg / 60 ;
+		
+	
+// 		var contm=contadormin.toFixed(0);
+		
+// 		var conts = duration.toFixed(0);
+		
+		
+// 		var contadorhora = contm / 60 ;
+		
+// 		var conth = contadorhora.toFixed(0);
+		
+// 	var segundo = 1000;
+//     var minuto = segundo * 60;
+//     var hora = minuto * 60;
+//      var _dia = _hora * 24;	
+		
+//     var sec = duration;
+//     var total = duration;
+    
+//     var diferenca =  player.currentTime - player.duration ;
+    
+	var diferenca = (newprogress - duration) *(-1);
+		
+	var dias = diferenca / 86400 * 1000;
+    var horas = diferenca % 86400 / 3600;
+//     var minutos = diferenca / 60000 * 1000;
+    var segundos = (duration - newprogress)  % 60000 ;
+ 	var minutos = (duration - newprogress) / 60000 * 1000;
+
+		
+    
+//     var min = minutos / 60 ;
+
+//     var min = minutos % 60000 % 1000 * 60;
+
+		
+    
+    var seg = segundos  % 60;
+
+//  	var seg = segundos % 60000 % 60;
+ 	
+ 	var min = minutos - seg /1000  % duration / 60;
+    
+//     seg = seg * 60000 / 1000 ;
+   
+   var minu =  min.toFixed(0) ;
+    
+   var segu = seg.toFixed(0);
+    
+//    var condmin = (minu === 9.0 || minu ===9);
+	
+//    if (condmin) {
+	   
+// 	   minutos = "0" + minutos ;
+	   
+//    }else {
+	   
+// 	   minutos;
+	   
+//    }
+   
+//    var condseg =  (seg === 10);
+
+   
+//    if(condseg) {
+	   
+// 	   segundos = "0" + segundos ;
+	   
+//    }else {
+	   
+// 	   segundos;
+//    }
+
+		
+		div.innerHTML =  minu + " : "  + segu;
+		
+	
+
 
   }
 
@@ -348,10 +471,7 @@ home usuario
 						<div class="ln_solid"></div>
 
 
-<!-- <br></br> -->
-<!-- <br></br> -->
-<!-- <br></br> -->
-<!-- <br></br> -->
+
 						<form id="labnol" method="get">
 
 							<div class="speech">
@@ -370,22 +490,15 @@ home usuario
 						
 							<div class="btn-group">
 <!-- th:src= "${filename}" -->
-								<audio id="demo"  th:src="${filename2}" src="audio/ata.mp3" ontimeupdate="document.getElementById('weight').value = this.currentTime" ondurationchange="document.getElementById('pval').value = this.currentTime"></audio>
-<!-- 								<progress id="barra_progresso" max="0" value="0"></progress> -->
-<!-- 								<span id="tempo_atual">00:00:00</span> -->
-<!-- 								<span id="tempo_total">00:00:00</span> -->
+<!-- ondurationchange="document.getElementById('pval').value = this.currentTime" -->
+								<audio id="demo"  th:src="${filename2}" src="audio/ata.mp3" ontimeupdate="AtualizaContadorAudio()"></audio>
+
 
 
 							
 							</div>
 							
 
-							
-<!-- 							<span class="badge bg-green">42</span> -->
-							
-								
-								
-<!-- 								enctype="multipart/form-data"> -->
 									<form action="form_upload" class="form-inline"  style="height:4.7em; min-width:8em;" enctype="multipart/form-data" method="post" >
 									
 									<div class="control-group">
@@ -416,21 +529,14 @@ home usuario
 									
 									</div>
 									
-<!-- 									<div class="control"> -->
-<!-- 									<div class="btn-group" > -->
-<!-- 										<input type="submit" value="Upload" class="btn-md btn-info" hidden="true"></input> -->
-									
-<!-- 									</div> -->
-<!-- 									</div> -->
+
 									
 									</div>
-<!-- 									</div> -->
 									
 
 								
 									</form>	
 									
-<!-- 								</div> -->
 
 
 								
@@ -490,22 +596,12 @@ home usuario
 							</a>
                          
                           </li>
-                          
-<!--                           <li> -->
-<!--                             <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> -->
-<!--                             <span class="glyphicon-class">glyphicon glyphicon-asterisk</span> -->
-<!--                           </li> -->
-
-<!--                           <li> -->
-<!--                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
-<!--                             <span class="glyphicon-class">glyphicon glyphicon-plus</span> -->
-<!--                           </li> -->
-                          
+                                                    
                           
                           </ul>
                           
                           
-<!--                           <div class="btn-group"> -->
+<!--     <div class="btn-group"> -->
 							
 							
 <!-- <div class="hp_slide"> -->
@@ -527,27 +623,46 @@ home usuario
                           
              <div class="x_content">
                
-                <div class="row grid_slider">
+<!--                 <div class="row grid_slider"> -->
                 
-               <div class="col-md-6 col-sm-6 col-xs-12">
+<!--                <div class="col-md-6 col-sm-6 col-xs-12"> -->
                 
 <!--                    <div id="slider"> -->
 <!-- 					<div id="handler-slider" class="ui-slider-handle"> </div> -->
 <!-- 					</div> -->
 					
-					<div>
-					  
-					  <p>Progresso</p>
-					<input  type="text" name="weight" id="weight" class="progressbar progressbar" min="" value="0" max="document.getElementById('demo').player().duration()=this.max;"  step="0,01" onchange="document.getElementById('demo').currentTime =this.value " onblur="document.getElementById('pval').value = this.value - this.max">	</input>			
-					 <span  class="progressbar" > <input type="number"  id="pval" value=""> 0% </input> </span>
+					<div id="progress" class="progress">
+<!-- 					  onblur="document.getElementById('pval').value = this.value - this.max" -->
+<!-- 					  th:text="${#weight}" -->
+					 
+<!-- 					  <p id="pval" text="sasa" clas="sr_only"> </p> -->
+					
+					<div  id="weight" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
+  							aria-valuemin="0" aria-valuemax="" >
+  							
+<!--   						 <input id="pval" value="0%" hidden="true"></input> -->
+  						 <p  id="pval" class="label label-success" text="0%">
+  						 
+  						  </p>
+  							
+  							
+  							
+  					
+  					</div>			
+  					
+<!--   					  <span  id="pval" class="label"  value="asasasassa" >sdasd</span> -->
+  					
+					 
+<!-- 					 <span  class="sr-only" id="pval" text="" > 0% </span> -->
+					
 					 </div> 
 					 
-					</div>
+<!-- 					</div> -->
 					
 
+<!-- 				</div> -->
 				</div>
-				</div>
-				<div class="clearfix"></div>
+<!-- 				<div class="clearfix"></div> -->
 				</div>
 				
 
