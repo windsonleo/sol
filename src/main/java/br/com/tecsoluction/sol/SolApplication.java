@@ -136,7 +136,6 @@ public class SolApplication  extends SpringBootServletInitializer {
         return dataSource;
     }
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(SolApplication.class, args);
 	
