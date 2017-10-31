@@ -130,9 +130,9 @@ public class SolApplication  extends SpringBootServletInitializer {
     public DataSource dataSource(Environment environment) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgres://ec2-107-21-205-25.compute-1.amazonaws.com:5432/d2hkmq294b94qq");
-        dataSource.setUsername("uohsqhivlmuqjt");
-        dataSource.setPassword("90ca602459038d0e90bbe552c7f251975b02941b90030c8ab3b96d95cddbc18c");
+        dataSource.setUrl("jdbc:postgres://sbiymdvltaunnx:a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c@ec2-184-73-159-137.compute-1.amazonaws.com:5432/d2imdq1tlu3415");
+        dataSource.setUsername("sbiymdvltaunnx");
+        dataSource.setPassword("a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c");
         return dataSource;
     }
 
