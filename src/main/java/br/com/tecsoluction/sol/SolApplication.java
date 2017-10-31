@@ -175,7 +175,7 @@ public class SolApplication  extends SpringBootServletInitializer {
         Properties ps = new Properties();
 //        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        ps.put("spring.jpa.hibernate.ddl-auto", "update");
+        ps.put("spring.jpa.hibernate.ddl-auto", "create");
 		ps.put("useSSL","false");
 //		ps.put("security.basic.enabled","false");
 
