@@ -81,7 +81,8 @@
         
               	        <dependency> 
             <groupId>org.postgresql</groupId> 
-            <artifactId>postgresql</artifactId> 
+            <artifactId>postgresql</artifactId>
+            <version>42.1.4</version>
             </dependency> 
         
         
@@ -177,7 +178,12 @@
 <!--             <artifactId>logback-core</artifactId> -->
 <!--         </dependency> -->
 		      
-    </dependencies>
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-configuration-processor</artifactId>
+    	<optional>true</optional>
+    </dependency>
+	</dependencies>
     
     	<dependencyManagement>
 		<dependencies>

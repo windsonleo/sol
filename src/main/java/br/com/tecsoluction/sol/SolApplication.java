@@ -33,6 +33,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
+import br.com.tecsoluction.sol.conf.DataSourceConf;
 import br.com.tecsoluction.sol.conf.security.ConfiguracaoSecurity;
 import br.com.tecsoluction.sol.conf.web.MultPartResolver;
 import br.com.tecsoluction.sol.conf.web.ThymeleafeConf;
@@ -47,7 +48,7 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class})
+@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class,DataSourceConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	
@@ -126,15 +127,15 @@ public class SolApplication  extends SpringBootServletInitializer {
 //    }
 	
 	
-	@Bean(name="dataSource")
-    public DataSource dataSource(Environment environment) {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgres://sbiymdvltaunnx:a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c@ec2-184-73-159-137.compute-1.amazonaws.com:5432/d2imdq1tlu3415");
-        dataSource.setUsername("sbiymdvltaunnx");
-        dataSource.setPassword("a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c");
-        return dataSource;
-    }
+//	@Bean(name="dataSource")
+//    public DataSource dataSource(Environment environment) {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.postgresql.Driver");
+//        dataSource.setUrl("jdbc:postgresql://sbiymdvltaunnx:a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c@ec2-184-73-159-137.compute-1.amazonaws.com:5432/d2imdq1tlu3415");
+//        dataSource.setUsername("sbiymdvltaunnx");
+//        dataSource.setPassword("a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c");
+//        return dataSource;
+//    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(SolApplication.class, args);
@@ -157,7 +158,7 @@ public class SolApplication  extends SpringBootServletInitializer {
         LocalContainerEntityManagerFactoryBean lcemfb
                 = new LocalContainerEntityManagerFactoryBean();
 
-        lcemfb.setDataSource(dataSource(null));
+        lcemfb.setDataSource(DataSourceConf.dataSource());
         lcemfb.setPackagesToScan(new String[] {"br.com.tecsoluction.sol.entidade"});
 
         lcemfb.setPersistenceUnitName("PU-SOL");
