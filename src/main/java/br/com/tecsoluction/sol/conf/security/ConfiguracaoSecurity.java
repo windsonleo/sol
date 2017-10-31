@@ -21,14 +21,16 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import br.com.tecsoluction.sol.conf.DataSourceConf;
+
 
 @Configuration
 @EnableWebSecurity
 //@EnableWebMvc
 public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+//	@Autowired
+//	private DataSource dataSource;
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
@@ -45,7 +47,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 			jdbcAuthentication()
 				.usersByUsernameQuery(usersQuery)
 				.authoritiesByUsernameQuery(rolesQuery)
-				.dataSource(dataSource);
+				.dataSource(DataSourceConf.dataSource());
 //				.passwordEncoder(bCryptPasswordEncoder);
 				
 	}

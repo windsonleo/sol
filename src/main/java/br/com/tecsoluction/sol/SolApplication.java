@@ -6,6 +6,7 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.Registration.Dynamic;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -47,11 +48,13 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @SpringBootApplication(scanBasePackages = "br.com.tecsoluction.sol")
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
-@ComponentScan(basePackages = {"br.com.tecsoluction.sol"})
-//@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class})
+@ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
+@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	
+	@Autowired
+	private DataSource dataSource;
 	
 	
     @Override
