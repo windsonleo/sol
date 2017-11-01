@@ -2,6 +2,8 @@ package br.com.tecsoluction.sol.servico.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.tecsoluction.sol.dao.IUsuarioDao;
 import br.com.tecsoluction.sol.entidade.Usuario;
 import br.com.tecsoluction.sol.framework.AbstractEntityService;
@@ -10,6 +12,7 @@ import br.com.tecsoluction.sol.servico.IUsuarioServico;
 
 
 @Service("userService")
+@Transactional
 public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implements IUsuarioServico {
 		
 		
