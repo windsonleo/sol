@@ -20,11 +20,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @Configuration
-@Profile("default")
+@Profile("profilesol")
 public class DataSourceConf {
 		
 	
-	    @Bean
+	    @Bean(name="dataSource")
 	    @Primary
 //	    @ConfigurationProperties(prefix = "spring.datasource")
 	    public static DataSource dataSource() {
@@ -45,7 +45,7 @@ public class DataSourceConf {
 	        LocalContainerEntityManagerFactoryBean lcemfb
 	                = new LocalContainerEntityManagerFactoryBean();
 
-	        lcemfb.setDataSource(dataSource());
+	        lcemfb.setDataSource(DataSourceConf.dataSource());
 	        lcemfb.setPackagesToScan(new String[] {"br.com.tecsoluction.sol.entidade"});
 
 	        lcemfb.setPersistenceUnitName("PU-SOL");

@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 @ComponentScan("br.com.tecsoluction.sol")
 public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 

@@ -20,7 +20,7 @@ public class WebInitiliaze implements WebApplicationInitializer {
 		  // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext =
                 new AnnotationConfigWebApplicationContext();
-        rootContext.register(SolApplication.class);
+        rootContext.register(AppConfig.class);
 
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));
@@ -34,7 +34,7 @@ public class WebInitiliaze implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher =
                 container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+        dispatcher.addMapping("/**");
 
 		
 	}
