@@ -27,18 +27,18 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/src/main/resources/");
-        registry.addResourceHandler("/static/**").addResourceLocations("/resources/static/");
-        registry.addResourceHandler("/templates/**").addResourceLocations("/resources/templates/");
-        registry.addResourceHandler("/web/**").addResourceLocations("/resources/static/web/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/src/main/resources/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/src/main/resources/static/");
+        registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/src/main/resources/templates/");
+        registry.addResourceHandler("/web/**").addResourceLocations("classpath:/src/main/resources/static/web/");
         registry.addResourceHandler("**/favicon.ico").addResourceLocations("/resources/static/img/favicon.ico");
 //        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/build/**").addResourceLocations("/resources/static/web/build");
-        registry.addResourceHandler("/vendors/**").addResourceLocations("/resources/static/web/vendors/");
-        registry.addResourceHandler("/audio/**").addResourceLocations("/resources/static/audio/");
-        registry.addResourceHandler("/error/**").addResourceLocations("/resources/templates/error/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/resources/static/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/resources/static/js/");
+        registry.addResourceHandler("/build/**").addResourceLocations("classpath:/src/main/resources/static/web/build");
+        registry.addResourceHandler("/vendors/**").addResourceLocations("classpath:/src/main/resources/static/web/vendors/");
+        registry.addResourceHandler("/audio/**").addResourceLocations("classpath:/src/main/resources/static/audio/");
+        registry.addResourceHandler("/error/**").addResourceLocations("classpath:/src/main/resources/templates/error/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/src/main/resources/static/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/src/main/resources/static/js/");
 
    
     }
