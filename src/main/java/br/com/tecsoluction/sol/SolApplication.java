@@ -51,9 +51,9 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
-	
-	@Autowired
-	private DataSource dataSource;
+//	
+//	@Autowired
+//	private DataSource dataSource;
 	
 	
     @Override
