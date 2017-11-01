@@ -13,10 +13,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-//@EnableWebMvc
-//@EnableWebSecurity
-//@ComponentScan(basePackages = "br.com.tecsoluction.sol")
-//@Import({ConfiguracaoSecurity.class,ThymeleafeConf.class,DataSourceConf.class})
+@Import({ThymeleafeConf.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	  private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
@@ -32,36 +29,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/templates/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
         registry.addResourceHandler("/web/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
         registry.addResourceHandler("**/favicon.ico").addResourceLocations("classpath:/resources/static/img/favicon.ico");
-//        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("/build/**").addResourceLocations("classpath:/resources/static/web/build/");
-//        registry.addResourceHandler("/vendors/**").addResourceLocations("classpath:/resources/static/web/vendors/");      
-//        registry.addResourceHandler("/audio/**").addResourceLocations("classpath:/resources/static/audio/");
-//        registry.addResourceHandler("/error/**").addResourceLocations("classpath:/resources/templates/error/");
-//        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/resources/static/css/");
-//        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/resources/static/js/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/build/**").addResourceLocations("classpath:/resources/static/web/build/");
+        registry.addResourceHandler("/vendors/**").addResourceLocations("classpath:/resources/static/web/vendors/");      
+        registry.addResourceHandler("/audio/**").addResourceLocations("classpath:/resources/static/audio/");
+        registry.addResourceHandler("/error/**").addResourceLocations("classpath:/resources/templates/error/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/resources/static/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/resources/static/js/");
 
-//    	registry.addResourceHandler("/**")
-//        .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
     	
     }
-    
-//    @Bean
-// 	public DispatcherServlet dispatcherServlet() {
-// 		return new DispatcherServlet();
-// 	}
-//
-// 	@Bean
-// 	public ServletRegistrationBean dispatchServletRegistration() {
-//
-// 		ServletRegistrationBean registration = new ServletRegistrationBean(
-// 				dispatcherServlet(), "/");
-//
-// 		registration
-// 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
-//
-// 		return registration;
-//
-// 	}
+
     
 
 }

@@ -26,15 +26,12 @@ import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
 import br.com.tecsoluction.sol.servico.imp.ServicoNotificacaoImpl;
 import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 
-//@ComponentScan
-//@EnableAutoConfiguration
-@EnableWebMvc
-@EnableWebSecurity
+
 @SpringBootApplication(scanBasePackages = "br.com.tecsoluction.sol")
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class,DataSourceConf.class})
+@Import({AppConfig.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	
