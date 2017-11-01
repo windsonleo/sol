@@ -11,8 +11,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -33,6 +35,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import br.com.tecsoluction.sol.conf.DataSourceConf;
 import br.com.tecsoluction.sol.conf.security.ConfiguracaoSecurity;
@@ -62,7 +65,23 @@ public class SolApplication  extends SpringBootServletInitializer {
         return application.sources(SolApplication.class);
     }
     
-    
+    @Bean
+	public DispatcherServlet dispatcherServlet() {
+		return new DispatcherServlet();
+	}
+
+	@Bean
+	public ServletRegistrationBean dispatchServletRegistration() {
+
+		ServletRegistrationBean registration = new ServletRegistrationBean(
+				dispatcherServlet(), "/sol/*");
+
+		registration
+				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
+
+		return registration;
+
+	}
     
 	@Bean
 	 public MultipartConfigElement multipartConfigElement() {

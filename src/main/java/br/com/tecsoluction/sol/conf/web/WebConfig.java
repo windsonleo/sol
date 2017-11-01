@@ -1,6 +1,7 @@
 package br.com.tecsoluction.sol.conf.web;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -24,6 +25,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //	        messageSource.setBasename("messages");
 //	        return messageSource;
 //	    }
+	
+	
+	 @Override
+	    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	        configurer.enable();
+	    }
+	 
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
