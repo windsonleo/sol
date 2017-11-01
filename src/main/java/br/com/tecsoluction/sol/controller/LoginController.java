@@ -46,33 +46,16 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @Controller
 public class LoginController {
 	
-//    @Autowired
-//    private ServicoNotificacaoImpl notificacaoService;
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-//	@Autowired
-//    private  UsuarioServicoImpl userService;
 
 	
-	private Usuario usuario;
+	    private Usuario usuario;
 	
-//	@Autowired 
-//	private ServletContext contexto = null;
-	
-	private String filenamef = null;
-	
-//	private HttpSession session;
 	 
-	    private static final String LOCATION = "C:/temp/"; // Temporary location where files will be stored
-	 
-	    private static final long MAX_FILE_SIZE = 5242880; // 5MB : Max file size.
-	                                                        // Beyond that size spring will throw exception.
-	    private static final long MAX_REQUEST_SIZE = 20971520; // 20MB : Total request size containing Multi part.
-	     
-	    private static final int FILE_SIZE_THRESHOLD = 0; // Size threshold after which files will be written to disk
-	
-	
+
     @Autowired
     public LoginController() {
 
@@ -97,13 +80,13 @@ public class LoginController {
     @RequestMapping(value ={"/"}, method = RequestMethod.GET)
 	public ModelAndView  LoginForm(HttpServletRequest request){
   	
-    	ModelAndView login = new ModelAndView("login");
-   	    login.addObject("usuario", new Usuario());
+//    	ModelAndView login = new ModelAndView("login");
+//   	    login.addObject("usuario", new Usuario());
     	
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
     	
 
-  	return login;	
+  	return new ModelAndView("redirect:/login");	
   	
 	}
     

@@ -47,12 +47,22 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","**/favicon.ico").permitAll()
+				.antMatchers("/resources/**","/static/**","*/web/**","*/build/**","*/vendors/**","*/img/**","/templates/**","/webjars/**","*/js/**","*/css/**","*/audio/**","**/favicon.ico").permitAll()
+				.antMatchers("/resources/**").permitAll()
+				.antMatchers("*/static/**").permitAll()
+				.antMatchers("*/templates/**").permitAll()
+				.antMatchers("*/web/**").permitAll()
+				.antMatchers("*/build/**").permitAll()
+				.antMatchers("*/vendors/**").permitAll()
+				.antMatchers("*/img/**").permitAll()
+				.antMatchers("*/css/**").permitAll()
+				.antMatchers("*/js/**").permitAll()
+
 				.antMatchers("/login").permitAll()
 //				.antMatchers("/registration").permitAll()
 				.antMatchers("/home").hasRole("MEMBRO")
 
-				.antMatchers("/adm/**").hasAuthority("ADM").anyRequest()
+				.antMatchers("/usuario/**").hasAuthority("MEMBRO").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
 				.loginPage("/login").failureUrl("/error/erro")
 				.defaultSuccessUrl("/usuario/home")
@@ -60,7 +70,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 				.passwordParameter("senha")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/sol/login").and().exceptionHandling()
+				.logoutSuccessUrl("/login").and().exceptionHandling()
 				.accessDeniedPage("/error/accessdenied");
 	}
 	
@@ -71,43 +81,43 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 	       .antMatchers("/resources/**");
        web
 	       .ignoring()
-	       .antMatchers("/static/**");
+	       .antMatchers("*/static/**");
        
        web
        .ignoring()
-       .antMatchers("/css/**");
+       .antMatchers("*/css/**");
        
        web
        .ignoring()
-       .antMatchers("/js/**");
+       .antMatchers("*/js/**");
        
        web
        .ignoring()
-       .antMatchers("/img/**");
+       .antMatchers("*/img/**");
        
        web
        .ignoring()
-       .antMatchers("/web/**");
+       .antMatchers("*/web/**");
        
        web
        .ignoring()
-       .antMatchers("/build/**");
+       .antMatchers("*/build/**");
        
        web
        .ignoring()
-       .antMatchers("/vendors/**");
+       .antMatchers("*/vendors/**");
        
        web
        .ignoring()
-       .antMatchers("/audio/**");
+       .antMatchers("*/audio/**");
        
        web
        .ignoring()
-       .antMatchers("/templates/**");
+       .antMatchers("*/templates/**");
        
        web
        .ignoring()
-       .antMatchers("/audio/**");
+       .antMatchers("*/audio/**");
 
 	}
 	
