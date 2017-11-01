@@ -1,4 +1,4 @@
-package br.com.tecsoluction.sol.conf;
+package br.com.tecsoluction.sol;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

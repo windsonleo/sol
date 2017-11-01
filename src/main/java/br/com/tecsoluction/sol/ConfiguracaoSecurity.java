@@ -1,4 +1,4 @@
-package br.com.tecsoluction.sol.conf;
+package br.com.tecsoluction.sol;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
