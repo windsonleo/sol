@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
-    private  UsuarioServicoImpl ususervice;
+    private  UsuarioServicoImpl userService;
 
 	
 	private Usuario usuario;
@@ -96,13 +97,13 @@ public class LoginController {
     @RequestMapping(value ={"/"}, method = RequestMethod.GET)
 	public ModelAndView  LoginForm(HttpServletRequest request){
   	
-//    	ModelAndView login = new ModelAndView("login");
-//    	login.addObject("usuario", new Usuario());
+    	ModelAndView login = new ModelAndView("login");
+   	    login.addObject("usuario", new Usuario());
     	
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
     	
 
-  	return new ModelAndView("redirect:login");	
+  	return login;	
   	
 	}
     
@@ -110,10 +111,6 @@ public class LoginController {
 	public ModelAndView  LoginForm2(HttpServletRequest request){
   	
     	ModelAndView login = new ModelAndView("login");
-//    	login.addObject("usuario", new Usuario());
-    	
-//    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
-    	
 
   	return login;	
   	
@@ -124,162 +121,11 @@ public class LoginController {
 	public ModelAndView  AcessDenied(HttpServletRequest request){
   	
     	ModelAndView accessdenied = new ModelAndView("/login/accessdenied");
-//    	login.addObject("usuario", new Usuario());
-    	
-//    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
-    	
 
   	return accessdenied;	
   	
 	}
     
-    
-
-//    @RequestMapping(value = "/form_upload",method = RequestMethod.POST)
-//    public String UploadAudio(@RequestParam("file") MultipartFile   file,HttpSession session,HttpServletRequest request,Model model) {
-//    	
-////    	this.usuario =  ususervice.findByUsername(usuario.getUsername());
-//
-//        if (this.usuario.getUsername() != usuario.getUsername()) {
-//            notificacaoService.addErrorMessage(
-//                    "nome não bate !");
-//            return "login";
-//        }
-//
-//        if ( this.usuario == null) {
-//            notificacaoService.addErrorMessage("Login Invalido");
-//            return "login";
-//        }
-//
-//        // Login successful
-//        notificacaoService.addInfoMessage("sucesso!");
-    	
-//    	
-//    	long id = Long.parseLong(request.getParameter("usuarioid"));
-//    	
-//    	Usuario usuario = ususervice.findOne(id);
-//    	
-//    	
-//    	ModelAndView home = new ModelAndView("home");
-//    	
-//    	home.addObject("usuario", usuario);
-//
-//
-//    	String mensagem = "Sucesso ao salvar foto";
-//    	String erros = "Falha ao salvar foto";
-//
-////    	funfa
-////    	String path=session.getServletContext().getRealPath("/resources");
-//
-//    	String path=session.getServletContext().getRealPath("/WEB-INF/classes/static/audio/");
-//    	
-//    	
-//
-//    	
-//    	
-//        System.out.println("path:"+path);  
-//
-//
-//    	
-//    	String camfoto = null;
-//    	
-////    	String pathh = "\\static\\audio\\";
-//    	//string pathh = file.get
-//         this.filenamef=file.getOriginalFilename();  
-//          
-//
-//    	
-//    	
-//    	camfoto = "audio\\"+filenamef;
-//    	String camfoto2 = path+"\\"+filenamef;
-//    	
-//    	 System.out.println("camfoto2"+ camfoto2);
-//    	 System.out.println("camfoto1"+ camfoto);
-//
-//    	 
-//    	 String diretorio = null;
-//    	 
-//    	 File dir = new File(path);
-//    	 
-//    	 
-//    	
-//
-//    	 if (!dir.exists()){
-//             dir.mkdirs();
-//    	 }
-//    	 
-//    	 
-//        try{ 
-//        	
-//        byte barr[]=file.getBytes();  
-//        
-//      File serverFile = new File(dir.getAbsolutePath() + File.separator + filenamef);
-//
-//          
-//        BufferedOutputStream bout=new BufferedOutputStream(  
-//                 new FileOutputStream(serverFile));  
-//        
-////        BufferedOutputStream bout=new BufferedOutputStream(  
-////                new FileOutputStream(pathh+"/"+filename));
-//        
-////        BufferedOutputStream bout=new BufferedOutputStream(  
-////                new FileOutputStream(contexto.getResourceAsStream("/resources/static/audio/")+filename));
-//        
-//      
-////        String rootPath = System.getProperty("C:\\Users\\teste\\Downloads");
-//
-//        
-//        
-//        bout.write(barr);  
-//        bout.flush();  
-//        bout.close();  
-//        
-//
-//    	home.addObject("filename", serverFile.getAbsolutePath());
-//    	home.addObject("filename2", "audio/"+filenamef);
-//
-//
-//          
-//        }catch(Exception e){
-//        	
-//        	System.out.println(e);
-//        	
-//        	home.addObject("filename2", "audio/"+filenamef);
-//
-//        } 
-//        
-//        return "redirect:/home" ;
-//    }
-//    
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public ModelAndView  LoginEnvio(HttpServletRequest request){
-//  	
-//
-//  	
-//  	ModelAndView home = new ModelAndView("home");
-//  	
-//  	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//	Usuario usuario = ususervice.findByUsername(auth.getName());
-//	
-//	
-//	home.addObject("usuario", usuario);
-//	
-//		
-//  	return home;	
-//  	
-//	}
-    
-    
-    
-//    @RequestMapping(value = "erros/erro", method = RequestMethod.GET)
-//	public ModelAndView  Error(){
-//  	
-//    	ModelAndView error = new ModelAndView("erro");
-//    	
-//		
-//  	return error;	
-//  	
-//	}
     
     
     @RequestMapping(value = "/error", method = RequestMethod.GET)
@@ -302,53 +148,7 @@ public class LoginController {
   	return error;	
   	
 	}
-//	@SuppressWarnings("null")
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public ModelAndView  Home(HttpServletRequest request, HttpSession session){
-//  	
 
-  	
-//  	ModelAndView home = new ModelAndView("home");
-//  	
-////  	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//  		Usuario usuario =  new Usuario();
-//		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-//		
-//		usuario = ususervice.findByUsername(usuario.getUsername());
-//		
-//		if(usuario.getUsername() == null){
-//			
-//			usuario.setUsername("Maria");
-//			System.out.println(" Windson if logincontroller Usuario :"+ usuario.getUsername());
-//		}else{
-//			
-//			session.setAttribute("usuario", usuario);
-//		}
-//		
-//		System.out.println(" Windson fora if logincontroller Usuario :"+ usuario.getUsername());
-//
-//	
-////	List<String> tesste = null ;
-////	
-////	String teste ="teste1";
-////	String teste2 ="teste2";
-////	String teste3 ="teste3";
-////	
-////	tesste.add(teste);
-////	tesste.add(teste2);
-////	tesste.add(teste3);
-//
-//
-//	
-//	home.addObject("usuario", usuario);
-//	home.addObject("filename2","audio/"+filenamef);
-//	home.addObject("filenamef", filenamef);
-//
-//	
-//		
-//  	return home;	
-//  	
-//	}
 	
 	
 }
