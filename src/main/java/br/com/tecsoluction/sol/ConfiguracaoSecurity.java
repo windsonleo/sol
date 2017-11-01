@@ -43,7 +43,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","**/favicon.ico","/").permitAll()
+				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","**/favicon.ico").permitAll()
 				.antMatchers("/login").permitAll()
 //				.antMatchers("/registration").permitAll()
 				.antMatchers("/home").hasRole("MEMBRO")
