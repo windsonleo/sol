@@ -29,7 +29,7 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @EnableWebMvc
 @EnableWebSecurity
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({ AppConfig.class})
+@Import({AppConfig.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	

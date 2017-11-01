@@ -121,11 +121,11 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("password").roles("ADM");
     }
 	
-    @Bean
-    public ReflectionSaltSource reflectionSaltSource() {
-        ReflectionSaltSource reflectionSaltSource = new ReflectionSaltSource();
-        reflectionSaltSource.setUserPropertyToUse("username");
-        return reflectionSaltSource;
-    }
+//    @Bean
+//    public ReflectionSaltSource reflectionSaltSource() {
+//        ReflectionSaltSource reflectionSaltSource = new ReflectionSaltSource();
+//        reflectionSaltSource.setUserPropertyToUse("username");
+//        return reflectionSaltSource;
+//    }
 	
 }

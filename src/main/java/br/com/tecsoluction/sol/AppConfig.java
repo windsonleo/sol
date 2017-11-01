@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@EnableWebMvc
-@EnableWebSecurity
+//@EnableWebMvc
+//@EnableWebSecurity
 @ComponentScan(basePackages = "br.com.tecsoluction.sol")
 @Import({ WebInitiliaze.class, WebConfig.class, ConfiguracaoSecurity.class})
 public class AppConfig {
