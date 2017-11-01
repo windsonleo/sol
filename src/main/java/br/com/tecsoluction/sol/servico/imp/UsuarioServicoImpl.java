@@ -14,8 +14,6 @@ public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implement
 		
 		
 		
-
-		@Autowired
 	    private IUsuarioDao dao;
 	    
 
