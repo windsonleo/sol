@@ -51,14 +51,14 @@ public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@Autowired
-    private  UsuarioServicoImpl userService;
+//	@Autowired
+//    private  UsuarioServicoImpl userService;
 
 	
 	private Usuario usuario;
 	
-	@Autowired 
-	private ServletContext contexto = null;
+//	@Autowired 
+//	private ServletContext contexto = null;
 	
 	private String filenamef = null;
 	
