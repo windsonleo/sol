@@ -15,10 +15,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
 import br.com.tecsoluction.sol.servico.imp.ServicoNotificacaoImpl;
@@ -26,6 +28,8 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 
 //@ComponentScan
 //@EnableAutoConfiguration
+@EnableWebMvc
+@EnableWebSecurity
 @SpringBootApplication(scanBasePackages = "br.com.tecsoluction.sol")
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
