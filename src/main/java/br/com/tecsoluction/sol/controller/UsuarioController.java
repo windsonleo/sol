@@ -44,13 +44,12 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 public class UsuarioController extends AbstractController<Usuario> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
-	
-	@Autowired
+
     private  UsuarioServicoImpl userService;
 
-	@Autowired
+
     private
-    RoleServicoImpl rdao;
+    RoleServicoImpl roleService;
 	
 	private Usuario usuario;
 	
@@ -64,10 +63,10 @@ public class UsuarioController extends AbstractController<Usuario> {
     
 
     @Autowired
-    public UsuarioController(UsuarioServicoImpl usu) {
+    public UsuarioController(UsuarioServicoImpl usu,RoleServicoImpl rd) {
         super("usuario");
         this.userService = usu;
-//        this.rdao=rdao;
+        this.roleService=rd;
         
     }
     
@@ -75,7 +74,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 
-        binder.registerCustomEditor(Role.class, new AbstractEditor<Role>(this.rdao) {
+        binder.registerCustomEditor(Role.class, new AbstractEditor<Role>(this.roleService) {
         });
      
 
@@ -94,7 +93,7 @@ public class UsuarioController extends AbstractController<Usuario> {
   		
 //  		roles = this.usuario.getRoles();
   		
-  		roles = rdao.findAll();
+  		roles = roleService.findAll();
   		
   		model.addAttribute("usuario", usuario);
   		model.addAttribute("roles", roles);

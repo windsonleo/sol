@@ -15,7 +15,8 @@ import br.com.tecsoluction.sol.servico.IRoleServico;
 
 
 
-@Service
+
+@Service("roleService")
 @Transactional
 public class RoleServicoImpl extends AbstractEntityService<Role>implements IRoleServico {
 
