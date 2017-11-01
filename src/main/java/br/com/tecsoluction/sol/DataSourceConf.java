@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@Profile("profilesol")
+//@Profile("profilesol")
 public class DataSourceConf {
 		
 	

@@ -27,7 +27,6 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({AppConfig.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	
