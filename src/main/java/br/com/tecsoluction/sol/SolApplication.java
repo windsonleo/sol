@@ -33,9 +33,6 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class,DataSourceConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
-//	
-//	@Autowired
-//	private DataSource dataSource;
 	
 	
     @Override
@@ -56,12 +53,6 @@ public class SolApplication  extends SpringBootServletInitializer {
 		
 	 }
 
-//	 @Bean
-//	 public MultipartResolver multipartResolverr() {
-//	     org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
-//	     multipartResolver.setMaxUploadSize(1000000);
-//	     return multipartResolver;
-//	 }
 	 
 	 @Bean
 	 public StandardServletMultipartResolver multipartResolverServelet() {
@@ -100,26 +91,6 @@ public class SolApplication  extends SpringBootServletInitializer {
     }
 	
 	
-//	@Bean(name="dataSource")
-//    public DataSource dataSource(Environment environment) {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/sol?useSSL=false");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("123456");
-//        return dataSource;
-//    }
-	
-	
-//	@Bean(name="dataSource")
-//    public DataSource dataSource(Environment environment) {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl("jdbc:postgresql://sbiymdvltaunnx:a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c@ec2-184-73-159-137.compute-1.amazonaws.com:5432/d2imdq1tlu3415");
-//        dataSource.setUsername("sbiymdvltaunnx");
-//        dataSource.setPassword("a8cfe732a24937cda48d29b651645a84a3efc82966051a0f1b7a29e19a9af16c");
-//        return dataSource;
-//    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(SolApplication.class, args);
@@ -129,76 +100,6 @@ public class SolApplication  extends SpringBootServletInitializer {
 	}
 	
 	
-//	@Bean
-//    public MultipartResolver multipartResolver() {
-//        return new StandardServletMultipartResolver();
-//    }
-	
-	
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-//
-//
-//        LocalContainerEntityManagerFactoryBean lcemfb
-//                = new LocalContainerEntityManagerFactoryBean();
-//
-//        lcemfb.setDataSource(DataSourceConf.dataSource());
-//        lcemfb.setPackagesToScan(new String[] {"br.com.tecsoluction.sol.entidade"});
-//
-//        lcemfb.setPersistenceUnitName("PU-SOL");
-//
-//        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-//        lcemfb.setJpaVendorAdapter(va);
-////        va.setDatabase(Database.MYSQL);
-//        va.setDatabase(Database.POSTGRESQL);
-//
-//        va.setGenerateDdl(true);
-//        va.setShowSql(true);
-////        va.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
-//        va.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
-//        Properties ps = new Properties();
-////        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-//        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-//        ps.put("spring.jpa.hibernate.ddl-auto", "update");
-//		ps.put("useSSL","false");
-////		ps.put("security.basic.enabled","false");
-//
-//		
-//		ps.put("spring.jpa.properties.hibernate.format_sql","true");
-//		ps.put("spring.datasource.validationQuery","SELECT 1");
-//		ps.put("spring.thymeleaf.cache","false");
-//		ps.put("security.basic.enabled","false");
-//
-//		
-//		
-//		
-//		
-//        lcemfb.setJpaProperties(ps);
-//
-//        lcemfb.afterPropertiesSet();
-//
-//        return lcemfb;
-//
-//    }
-
-
-
-//    @Bean
-//    public PlatformTransactionManager transactionManager(){
-//
-//        JpaTransactionManager tm = new JpaTransactionManager();
-//
-//        tm.setEntityManagerFactory(
-//                this.entityManagerFactory().getObject() );
-//
-//        return tm;
-//
-//    }
-//
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
 	
 	
 }

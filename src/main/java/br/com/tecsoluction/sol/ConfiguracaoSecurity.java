@@ -15,11 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-//@EnableWebMvc
 public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private DataSourceConf dataSource;
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
@@ -67,10 +64,47 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**","/webjars/**", "/web/**","/build/**","/vendors/**","/audio/**","/templates/**","**/favicon.ico");
-	
-//	    web.ignoring()
-//	    	.antMatchers("/web/**","/js/**","/css/**","/build/**","/vendors/**");
+	       .antMatchers("/resources/**");
+       web
+	       .ignoring()
+	       .antMatchers("/static/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/css/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/js/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/img/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/web/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/build/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/vendors/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/audio/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/templates/**");
+       
+       web
+       .ignoring()
+       .antMatchers("/audio/**");
+
 	}
 	
 
