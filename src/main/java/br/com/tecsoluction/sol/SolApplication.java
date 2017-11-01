@@ -79,15 +79,15 @@ public class SolApplication  extends SpringBootServletInitializer {
 //       return new ServicoNotificacaoImpl();
 //    }
 //	
-	@Bean(name = "usuarioServico")
-    public UsuarioServicoImpl getservicoUsuario() {
-       return new UsuarioServicoImpl();
-    }
-	
-	@Bean(name = "roleServico")
-    public RoleServicoImpl getservicoRole() {
-       return new RoleServicoImpl();
-    }
+//	@Bean(name = "usuarioServico")
+//    public UsuarioServicoImpl getservicoUsuario() {
+//       return new UsuarioServicoImpl();
+//    }
+//	
+//	@Bean(name = "roleServico")
+//    public RoleServicoImpl getservicoRole() {
+//       return new RoleServicoImpl();
+//    }
 	
 	
 

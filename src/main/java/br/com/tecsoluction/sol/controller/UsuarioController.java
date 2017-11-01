@@ -46,10 +46,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
-	
+	@Autowired
     private  UsuarioServicoImpl userService;
 
-
+	@Autowired
     private
     RoleServicoImpl roleService;
 	
