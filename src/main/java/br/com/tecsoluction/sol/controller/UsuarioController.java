@@ -46,7 +46,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	
 	@Autowired
-    private  UsuarioServicoImpl ususervice;
+    private  UsuarioServicoImpl userService;
 
 	@Autowired
     private
@@ -64,9 +64,9 @@ public class UsuarioController extends AbstractController<Usuario> {
     
 
     @Autowired
-    public UsuarioController() {
+    public UsuarioController(UsuarioServicoImpl usu) {
         super("usuario");
-//        this.ususervice = udao;
+        this.userService = usu;
 //        this.rdao=rdao;
         
     }
@@ -89,7 +89,7 @@ public class UsuarioController extends AbstractController<Usuario> {
         
          Usuario usuariotemp = new Usuario();
          usuariotemp.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-  		this.usuario = ususervice.findByUsername(usuariotemp.getUsername()); 
+  		this.usuario = userService.findByUsername(usuariotemp.getUsername()); 
   		
   		
 //  		roles = this.usuario.getRoles();
@@ -116,7 +116,7 @@ public class UsuarioController extends AbstractController<Usuario> {
   		Usuario usuario =  new Usuario();
 		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		usuario = ususervice.findByUsername(usuario.getUsername());
+		usuario = userService.findByUsername(usuario.getUsername());
 		
 		if(usuario.getUsername() == null){
 			
@@ -152,7 +152,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     	ModelAndView profileusuario = new ModelAndView("/usuario/profile");
     	
     	
-    	  this.usuario = ususervice.findOne(this.usuario.getId());
+    	  this.usuario = userService.findOne(this.usuario.getId());
     	 
 
     	 profileusuario.addObject("usuario", session.getAttribute("usuario"));
@@ -185,7 +185,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
     	long id = Long.parseLong(request.getParameter("usuarioid"));
     	
-    	Usuario usuario = ususervice.findOne(id);
+    	Usuario usuario = userService.findOne(id);
     	
     	
     	ModelAndView home = new ModelAndView("home");
@@ -286,7 +286,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	@Override
 	protected AbstractEntityService<Usuario> getservice() {
 		// TODO Auto-generated method stub
-		return ususervice;
+		return userService;
 	}
 
 	
