@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 //@EnableWebSecurity
 //@ComponentScan(basePackages = "br.com.tecsoluction.sol")
 //@Import({ConfiguracaoSecurity.class,ThymeleafeConf.class})
@@ -28,10 +28,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //	    }
 	
 	
-	 @Override
-	    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-	        configurer.enable();
-	    }
+//	 @Override
+//	    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//	        configurer.enable();
+//	    }
 	 
 
     @Override
