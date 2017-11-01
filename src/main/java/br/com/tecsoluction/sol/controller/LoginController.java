@@ -87,7 +87,7 @@ public class LoginController {
 //        Usuario usuario = new Usuario();
 //  		usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //  		usuario = ususervice.findByUsername(usuario.getUsername()); 
-//  		model.addAttribute("usuario", new Usuario());
+  		model.addAttribute("usuario", new Usuario());
 
 
 
@@ -102,14 +102,14 @@ public class LoginController {
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
     	
 
-  	return new ModelAndView("redirect:login/login");	
+  	return new ModelAndView("redirect:login");	
   	
 	}
     
     @RequestMapping(value ={"/login"}, method = RequestMethod.GET)
 	public ModelAndView  LoginForm2(HttpServletRequest request){
   	
-    	ModelAndView login = new ModelAndView("/login/login");
+    	ModelAndView login = new ModelAndView("login");
 //    	login.addObject("usuario", new Usuario());
     	
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
