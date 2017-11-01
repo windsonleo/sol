@@ -13,11 +13,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
 import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
@@ -27,6 +25,7 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
+@Import({ConfiguracaoSecurity.class,WebConfig.class,DataSourceConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 	
