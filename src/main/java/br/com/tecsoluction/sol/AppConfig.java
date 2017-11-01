@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-//@EnableWebSecurity
+@EnableWebSecurity
 @ComponentScan(basePackages = "br.com.tecsoluction.sol")
 @Import({ WebInitiliaze.class, WebConfig.class})
 public class AppConfig {
