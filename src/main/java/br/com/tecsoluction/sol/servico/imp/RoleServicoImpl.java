@@ -20,6 +20,8 @@ import br.com.tecsoluction.sol.servico.IRoleServico;
 @Transactional
 public class RoleServicoImpl extends AbstractEntityService<Role>implements IRoleServico {
 
+	
+	@Autowired
 	private 
 	IRoleDao roledao;
 	

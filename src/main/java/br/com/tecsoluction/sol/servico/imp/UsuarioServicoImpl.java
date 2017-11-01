@@ -17,11 +17,11 @@ import br.com.tecsoluction.sol.servico.IUsuarioServico;
 public class UsuarioServicoImpl extends AbstractEntityService<Usuario> implements IUsuarioServico {
 		
 		
-		
+		@Autowired
 	    private IUsuarioDao dao;
 	    
 
-
+	
 	public UsuarioServicoImpl() {
 		
 		super(Usuario.class, "usuario");
