@@ -19,6 +19,9 @@ import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
+import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
+
 
 @SpringBootApplication(scanBasePackages = "br.com.tecsoluction.sol")
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
@@ -76,15 +79,15 @@ public class SolApplication  extends SpringBootServletInitializer {
 //       return new ServicoNotificacaoImpl();
 //    }
 //	
-//	@Bean(name = "usuarioServico")
-//    public UsuarioServicoImpl getservicoUsuario() {
-//       return new UsuarioServicoImpl();
-//    }
-//	
-//	@Bean(name = "roleServico")
-//    public RoleServicoImpl getservicoRole() {
-//       return new RoleServicoImpl();
-//    }
+	@Bean(name = "usuarioServico")
+    public UsuarioServicoImpl getservicoUsuario() {
+       return new UsuarioServicoImpl();
+    }
+	
+	@Bean(name = "roleServico")
+    public RoleServicoImpl getservicoRole() {
+       return new RoleServicoImpl();
+    }
 	
 	
 
