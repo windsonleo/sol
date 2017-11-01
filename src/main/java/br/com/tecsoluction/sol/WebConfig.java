@@ -1,8 +1,12 @@
 package br.com.tecsoluction.sol;
 
+import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -54,7 +58,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
    
     }
     
-    
+    @Bean
+ 	public DispatcherServlet dispatcherServlet() {
+ 		return new DispatcherServlet();
+ 	}
+
+ 	@Bean
+ 	public ServletRegistrationBean dispatchServletRegistration() {
+
+ 		ServletRegistrationBean registration = new ServletRegistrationBean(
+ 				dispatcherServlet(), "/*");
+
+ 		registration
+ 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
+
+ 		return registration;
+
+ 	}
     
 
 }

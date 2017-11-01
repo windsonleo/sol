@@ -1,14 +1,8 @@
 package br.com.tecsoluction.sol;
 
-import java.util.Properties;
-
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.Registration.Dynamic;
-import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
@@ -19,28 +13,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import br.com.tecsoluction.sol.conf.web.MultPartResolver;
-import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
-import br.com.tecsoluction.sol.servico.imp.ServicoNotificacaoImpl;
-import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 
 //@ComponentScan
 //@EnableAutoConfiguration
@@ -48,7 +26,7 @@ import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class})
+@Import({WebConfig.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 //	
@@ -61,23 +39,23 @@ public class SolApplication  extends SpringBootServletInitializer {
         return application.sources(SolApplication.class);
     }
     
-    @Bean
-	public DispatcherServlet dispatcherServlet() {
-		return new DispatcherServlet();
-	}
-
-	@Bean
-	public ServletRegistrationBean dispatchServletRegistration() {
-
-		ServletRegistrationBean registration = new ServletRegistrationBean(
-				dispatcherServlet(), "/*");
-
-		registration
-				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
-
-		return registration;
-
-	}
+//    @Bean
+//	public DispatcherServlet dispatcherServlet() {
+//		return new DispatcherServlet();
+//	}
+//
+//	@Bean
+//	public ServletRegistrationBean dispatchServletRegistration() {
+//
+//		ServletRegistrationBean registration = new ServletRegistrationBean(
+//				dispatcherServlet(), "/*");
+//
+//		registration
+//				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
+//
+//		return registration;
+//
+//	}
     
 	@Bean
 	 public MultipartConfigElement multipartConfigElement() {
@@ -118,20 +96,20 @@ public class SolApplication  extends SpringBootServletInitializer {
 		 
 	 }
 	
-	@Bean(name = "servicoNotificao")
-    public ServicoNotificacaoImpl getservico() {
-       return new ServicoNotificacaoImpl();
-    }
-	
-	@Bean(name = "usuarioServico")
-    public UsuarioServicoImpl getservicoUsuario() {
-       return new UsuarioServicoImpl();
-    }
-	
-	@Bean(name = "roleServico")
-    public RoleServicoImpl getservicoRole() {
-       return new RoleServicoImpl();
-    }
+//	@Bean(name = "servicoNotificao")
+//    public ServicoNotificacaoImpl getservico() {
+//       return new ServicoNotificacaoImpl();
+//    }
+//	
+//	@Bean(name = "usuarioServico")
+//    public UsuarioServicoImpl getservicoUsuario() {
+//       return new UsuarioServicoImpl();
+//    }
+//	
+//	@Bean(name = "roleServico")
+//    public RoleServicoImpl getservicoRole() {
+//       return new RoleServicoImpl();
+//    }
 	
 	
 //	@Bean(name="dataSource")
@@ -169,70 +147,70 @@ public class SolApplication  extends SpringBootServletInitializer {
 //    }
 	
 	
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-
-
-        LocalContainerEntityManagerFactoryBean lcemfb
-                = new LocalContainerEntityManagerFactoryBean();
-
-        lcemfb.setDataSource(DataSourceConf.dataSource());
-        lcemfb.setPackagesToScan(new String[] {"br.com.tecsoluction.sol.entidade"});
-
-        lcemfb.setPersistenceUnitName("PU-SOL");
-
-        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        lcemfb.setJpaVendorAdapter(va);
-//        va.setDatabase(Database.MYSQL);
-        va.setDatabase(Database.POSTGRESQL);
-
-        va.setGenerateDdl(true);
-        va.setShowSql(true);
-//        va.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
-        va.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
-        Properties ps = new Properties();
-//        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        ps.put("spring.jpa.hibernate.ddl-auto", "update");
-		ps.put("useSSL","false");
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+//
+//
+//        LocalContainerEntityManagerFactoryBean lcemfb
+//                = new LocalContainerEntityManagerFactoryBean();
+//
+//        lcemfb.setDataSource(DataSourceConf.dataSource());
+//        lcemfb.setPackagesToScan(new String[] {"br.com.tecsoluction.sol.entidade"});
+//
+//        lcemfb.setPersistenceUnitName("PU-SOL");
+//
+//        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
+//        lcemfb.setJpaVendorAdapter(va);
+////        va.setDatabase(Database.MYSQL);
+//        va.setDatabase(Database.POSTGRESQL);
+//
+//        va.setGenerateDdl(true);
+//        va.setShowSql(true);
+////        va.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
+//        va.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
+//        Properties ps = new Properties();
+////        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+//        ps.put("spring.jpa.hibernate.ddl-auto", "update");
+//		ps.put("useSSL","false");
+////		ps.put("security.basic.enabled","false");
+//
+//		
+//		ps.put("spring.jpa.properties.hibernate.format_sql","true");
+//		ps.put("spring.datasource.validationQuery","SELECT 1");
+//		ps.put("spring.thymeleaf.cache","false");
 //		ps.put("security.basic.enabled","false");
-
-		
-		ps.put("spring.jpa.properties.hibernate.format_sql","true");
-		ps.put("spring.datasource.validationQuery","SELECT 1");
-		ps.put("spring.thymeleaf.cache","false");
-		ps.put("security.basic.enabled","false");
-
-		
-		
-		
-		
-        lcemfb.setJpaProperties(ps);
-
-        lcemfb.afterPropertiesSet();
-
-        return lcemfb;
-
-    }
+//
+//		
+//		
+//		
+//		
+//        lcemfb.setJpaProperties(ps);
+//
+//        lcemfb.afterPropertiesSet();
+//
+//        return lcemfb;
+//
+//    }
 
 
 
-    @Bean
-    public PlatformTransactionManager transactionManager(){
-
-        JpaTransactionManager tm = new JpaTransactionManager();
-
-        tm.setEntityManagerFactory(
-                this.entityManagerFactory().getObject() );
-
-        return tm;
-
-    }
-
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(){
+//
+//        JpaTransactionManager tm = new JpaTransactionManager();
+//
+//        tm.setEntityManagerFactory(
+//                this.entityManagerFactory().getObject() );
+//
+//        return tm;
+//
+//    }
+//
+//    @Bean
+//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+//        return new PersistenceExceptionTranslationPostProcessor();
+//    }
 	
 	
 }
