@@ -70,7 +70,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
  				dispatcherServlet(), "/*");
 
  		registration
- 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
+ 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
 
  		return registration;
 
