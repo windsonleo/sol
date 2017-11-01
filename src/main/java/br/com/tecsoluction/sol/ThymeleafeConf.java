@@ -33,7 +33,7 @@ public class ThymeleafeConf  {
 	        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 	        resolver.setPrefix("/resources/templates/");
 	        resolver.setTemplateMode("HTML5");
-	        resolver.setOrder(1);
+//	        resolver.setOrder(1);
 	        return resolver;
 	    }
 
