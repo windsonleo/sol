@@ -20,6 +20,10 @@ import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
+import br.com.tecsoluction.sol.servico.imp.ServicoNotificacaoImpl;
+import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
+
 //@ComponentScan
 //@EnableAutoConfiguration
 @SpringBootApplication(scanBasePackages = "br.com.tecsoluction.sol")
@@ -80,20 +84,20 @@ public class SolApplication  extends SpringBootServletInitializer {
 		 
 	 }
 	
-//	@Bean(name = "servicoNotificao")
-//    public ServicoNotificacaoImpl getservico() {
-//       return new ServicoNotificacaoImpl();
-//    }
-//	
-//	@Bean(name = "usuarioServico")
-//    public UsuarioServicoImpl getservicoUsuario() {
-//       return new UsuarioServicoImpl();
-//    }
-//	
-//	@Bean(name = "roleServico")
-//    public RoleServicoImpl getservicoRole() {
-//       return new RoleServicoImpl();
-//    }
+	@Bean(name = "servicoNotificao")
+    public ServicoNotificacaoImpl getservico() {
+       return new ServicoNotificacaoImpl();
+    }
+	
+	@Bean(name = "usuarioServico")
+    public UsuarioServicoImpl getservicoUsuario() {
+       return new UsuarioServicoImpl();
+    }
+	
+	@Bean(name = "roleServico")
+    public RoleServicoImpl getservicoRole() {
+       return new RoleServicoImpl();
+    }
 	
 	
 //	@Bean(name="dataSource")
