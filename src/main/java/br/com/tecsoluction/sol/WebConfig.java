@@ -45,23 +45,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     	
     }
     
-    @Bean
- 	public DispatcherServlet dispatcherServlet() {
- 		return new DispatcherServlet();
- 	}
-
- 	@Bean
- 	public ServletRegistrationBean dispatchServletRegistration() {
-
- 		ServletRegistrationBean registration = new ServletRegistrationBean(
- 				dispatcherServlet(), "/**");
-
- 		registration
- 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
-
- 		return registration;
-
- 	}
+//    @Bean
+// 	public DispatcherServlet dispatcherServlet() {
+// 		return new DispatcherServlet();
+// 	}
+//
+// 	@Bean
+// 	public ServletRegistrationBean dispatchServletRegistration() {
+//
+// 		ServletRegistrationBean registration = new ServletRegistrationBean(
+// 				dispatcherServlet(), "/");
+//
+// 		registration
+// 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
+//
+// 		return registration;
+//
+// 	}
     
 
 }
