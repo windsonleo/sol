@@ -31,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/resources/static/");
         registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/resources/templates/");
         registry.addResourceHandler("/web/**").addResourceLocations("classpath:/resources/static/web/");
-        registry.addResourceHandler("**/favicon.ico").addResourceLocations("classpath:/resources/static/img/favicon.ico");
+        registry.addResourceHandler("**/favicon.ico").addResourceLocations("/resources/static/img/favicon.ico");
 //        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/build/**").addResourceLocations("classpath:/resources/static/web/build");
         registry.addResourceHandler("/vendors/**").addResourceLocations("classpath:/resources/static/web/vendors/");
