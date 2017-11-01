@@ -1,4 +1,4 @@
-package br.com.tecsoluction.sol.conf.security;
+package br.com.tecsoluction.sol.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import br.com.tecsoluction.sol.conf.DataSourceConf;
 
 
 @Configuration

@@ -1,4 +1,4 @@
-package br.com.tecsoluction.sol;
+package br.com.tecsoluction.sol.conf;
 
 import java.util.Properties;
 
@@ -37,11 +37,7 @@ import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import br.com.tecsoluction.sol.conf.DataSourceConf;
-import br.com.tecsoluction.sol.conf.security.ConfiguracaoSecurity;
 import br.com.tecsoluction.sol.conf.web.MultPartResolver;
-import br.com.tecsoluction.sol.conf.web.ThymeleafeConf;
-import br.com.tecsoluction.sol.conf.web.WebConfig;
 import br.com.tecsoluction.sol.servico.imp.RoleServicoImpl;
 import br.com.tecsoluction.sol.servico.imp.ServicoNotificacaoImpl;
 import br.com.tecsoluction.sol.servico.imp.UsuarioServicoImpl;
