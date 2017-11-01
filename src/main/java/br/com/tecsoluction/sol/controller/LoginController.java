@@ -102,14 +102,14 @@ public class LoginController {
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));
     	
 
-  	return new ModelAndView("redirect:/login");	
+  	return new ModelAndView("redirect:login/login");	
   	
 	}
     
     @RequestMapping(value ={"/login"}, method = RequestMethod.GET)
 	public ModelAndView  LoginForm2(HttpServletRequest request){
   	
-    	ModelAndView login = new ModelAndView("login");
+    	ModelAndView login = new ModelAndView("/login/login");
 //    	login.addObject("usuario", new Usuario());
     	
 //    	login.addObject("sesao", session.getAttribute("NOTIFY_MSG_SESSION_KEY"));

@@ -1,5 +1,7 @@
 package br.com.tecsoluction.sol;
 
+import javax.activation.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +18,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //@EnableWebMvc
 public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private DataSource dataSource;
+	@Autowired
+	private DataSource dataSource;
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;

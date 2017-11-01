@@ -70,7 +70,7 @@ public class SolApplication  extends SpringBootServletInitializer {
 	public ServletRegistrationBean dispatchServletRegistration() {
 
 		ServletRegistrationBean registration = new ServletRegistrationBean(
-				dispatcherServlet(), "/sol/*");
+				dispatcherServlet(), "/*");
 
 		registration
 				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
