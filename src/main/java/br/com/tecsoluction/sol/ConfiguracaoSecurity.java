@@ -18,8 +18,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //@EnableWebMvc
 public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+//	@Autowired
+//	private DataSourceConf dataSource;
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
@@ -36,7 +36,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 			jdbcAuthentication()
 				.usersByUsernameQuery(usersQuery)
 				.authoritiesByUsernameQuery(rolesQuery)
-				.dataSource(dataSource);
+				.dataSource(DataSourceConf.dataSource());
 //				.passwordEncoder(bCryptPasswordEncoder);
 				
 	}
@@ -46,7 +46,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","**/favicon.ico","/*").permitAll()
+				.antMatchers("/resources/**","/static/**","/web/**","/build/**","/vendors/**","/img/**","/templates/**","/webjars/**","/js/**","/css/**","/audio/**","**/favicon.ico").permitAll()
 				.antMatchers("/login").permitAll()
 //				.antMatchers("/registration").permitAll()
 				.antMatchers("/home").hasRole("MEMBRO")
@@ -67,7 +67,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**","/webjars/**", "/web/**","/build/**","/vendors/**","/audio/**","/templates/**","**/favicon.ico","/*");
+	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**","/webjars/**", "/web/**","/build/**","/vendors/**","/audio/**","/templates/**","**/favicon.ico");
 	
 //	    web.ignoring()
 //	    	.antMatchers("/web/**","/js/**","/css/**","/build/**","/vendors/**");

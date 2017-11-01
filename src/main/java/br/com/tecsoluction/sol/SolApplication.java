@@ -26,7 +26,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @EntityScan(basePackages = { "br.com.tecsoluction.sol.entidade" })
 @EnableJpaRepositories(basePackages = { "br.com.tecsoluction.sol.dao" })
 @ComponentScan(basePackages = {"br.com.tecsoluction.sol.controller"})
-@Import({WebConfig.class})
+@Import({WebConfig.class,ConfiguracaoSecurity.class, ThymeleafeConf.class,DataSourceConf.class})
 public class SolApplication  extends SpringBootServletInitializer {
 
 //	
@@ -39,23 +39,7 @@ public class SolApplication  extends SpringBootServletInitializer {
         return application.sources(SolApplication.class);
     }
     
-//    @Bean
-//	public DispatcherServlet dispatcherServlet() {
-//		return new DispatcherServlet();
-//	}
-//
-//	@Bean
-//	public ServletRegistrationBean dispatchServletRegistration() {
-//
-//		ServletRegistrationBean registration = new ServletRegistrationBean(
-//				dispatcherServlet(), "/*");
-//
-//		registration
-//				.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME);
-//
-//		return registration;
-//
-//	}
+  
     
 	@Bean
 	 public MultipartConfigElement multipartConfigElement() {
