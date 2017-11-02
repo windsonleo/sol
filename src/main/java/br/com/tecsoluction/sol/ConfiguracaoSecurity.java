@@ -58,6 +58,8 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("*/css/**").permitAll()
 				.antMatchers("*/js/**").permitAll()
 				.antMatchers("/login").permitAll()
+				.antMatchers("*/bootstrap/**").permitAll()
+				.antMatchers("*/webjars/**").permitAll()
 				.antMatchers("/home").hasAnyRole("MEMBRO","ADM")
 				.antMatchers("/usuario/**").hasAnyRole("MEMBRO","ADM").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
@@ -114,7 +116,7 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
        
        web
        .ignoring()
-       .antMatchers("*/audio/**");
+       .antMatchers("*/webjars/**");
 
 	}
 	
