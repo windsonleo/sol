@@ -1,0 +1,748 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/head :: head-css" />
+<title>Home usuario</title>
+
+
+<body th:replace="fragmentos/menu :: corpoHeader" th:object="${usuario}" />
+<!-- </body> -->
+<!-- <div class="container body"> -->
+
+
+
+<script>
+
+  function startDictation() {
+
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.continuous = true;
+      recognition.interimResults = false;
+
+      recognition.lang = "pt-BR";
+      recognition.start();
+
+      recognition.onresult = function(e) {
+        document.getElementById('transcript').value
+                                 = e.results[0][0].transcript;
+//         $("textarea[name='textid']").value = e.results[0][0].transcript;
+       
+        document.getElementById("desc").value = e.results[0][0].transcript;
+        
+        recognition.stop();
+       // document.getElementById('labnol').submit();
+      };
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+
+    }
+    
+  }
+  
+  function CopiareColar() {
+	  
+
+		var value1 = document.getElementById("desc").value;
+		var value2 = document.getElementById("desc2").value;
+		var valuenew;
+		
+		if(value2 === 'undefined' || value2 === null){
+			
+			valuenew = value1;
+			
+		}else{
+			
+			 valuenew = value2 +","+ value1;
+			
+			
+		}
+			
+			
+	        document.getElementById("desc2").value = valuenew;
+	        document.getElementById("desc2").autofocus();
+	        
+	    
+	  }
+  
+</script>
+
+<script>
+
+// var player = document.getElementById('demo');    
+// player.addEventListener("timeupdate", AtualizaContadorAudio() {
+//     var currentTime = player.currentTime;
+//     var duration = player.duration;
+//     document.getElementById('range').stop(true,true).animate({'value':(currentTime +.25)/duration*100+'%'},250,'linear');
+// });
+
+
+
+function AtualizaContadorAudio() {
+	  
+
+		var player = document.getElementById("demo");    
+// 		var currentTime = player.currentTime;
+	    var duration = player.duration;
+// 		var valuenew = player.seekable.end();
+// 		var valuenewtime = currentTime;
+	
+		var newprogress = player.currentTime;
+		
+		var div = document.getElementById("pval");
+
+		
+		document.getElementById("weight").setAttribute('aria-valuenow', newprogress);
+// 		document.getElementById("pval").setAttribute('text', newprogress.toFixed(2) + "%");
+		document.getElementById("weight").setAttribute('aria-valuemax', duration);
+		document.getElementById("progress").setAttribute('width', newprogress / duration * 100 + "%");
+
+		
+		document.getElementById("weight").style.width = newprogress/duration * 100 + "%";
+// 		document.getElementById("weight").style.width = "900";
+// 		document.getElementById("weight").style.width = "900";
+
+
+//         var
+
+// 		var atual = player.currentTime;
+		
+// 		var duracao = player.duration - atual;
+	
+// 		var contadorseg = duracao;
+		
+// 		var conts = duration.toFixed(0);
+		
+// 		var contadormin = contadorseg / 60 ;
+		
+// 		var contm=contadormin.toFixed(0);
+		
+
+// 		var restoseg = contadormin % 60;
+		
+// 		var resto = restoseg.toFixed(0);
+		
+// 		var rel = atual % duracao ;
+		
+// 		var mintemp = 00;
+		
+// 		rel.toFixed(0);
+		
+// 		if(rel = 60){
+			
+// 			mintemp = mintemp + 1;
+// // 			rel = 0;
+			
+// 		}
+		
+		
+// 		var temp = mintemp + ":" + rel ;
+		
+// 		var contadormin = contadorseg / 60 ;
+		
+	
+// 		var contm=contadormin.toFixed(0);
+		
+// 		var conts = duration.toFixed(0);
+		
+		
+// 		var contadorhora = contm / 60 ;
+		
+// 		var conth = contadorhora.toFixed(0);
+		
+// 	var segundo = 1000;
+//     var minuto = segundo * 60;
+//     var hora = minuto * 60;
+//      var _dia = _hora * 24;	
+		
+//     var sec = duration;
+//     var total = duration;
+    
+//     var diferenca =  player.currentTime - player.duration ;
+    
+	var diferenca = (newprogress - duration) *(-1);
+		
+	var dias = diferenca / 86400 * 1000;
+    var horas = diferenca % 86400 / 3600;
+//     var minutos = diferenca / 60000 * 1000;
+    var segundos = (duration - newprogress)  % 60000 ;
+ 	var minutos = (duration - newprogress) / 60000 * 1000;
+
+		
+    
+//     var min = minutos / 60 ;
+
+//     var min = minutos % 60000 % 1000 * 60;
+
+		
+    
+    var seg = segundos  % 60;
+
+//  	var seg = segundos % 60000 % 60;
+ 	
+ 	var min = minutos - seg /1000  % duration / 60;
+    
+//     seg = seg * 60000 / 1000 ;
+   
+   var minu =  min.toFixed(0) ;
+    
+   var segu = seg.toFixed(0);
+    
+//    var condmin = (minu === 9.0 || minu ===9);
+	
+//    if (condmin) {
+	   
+// 	   minutos = "0" + minutos ;
+	   
+//    }else {
+	   
+// 	   minutos;
+	   
+//    }
+   
+//    var condseg =  (seg === 10);
+
+   
+//    if(condseg) {
+	   
+// 	   segundos = "0" + segundos ;
+	   
+//    }else {
+	   
+// 	   segundos;
+//    }
+
+		
+		div.innerHTML =  minu + " : "  + segu;
+		
+	
+
+
+  }
+
+
+
+</script>
+
+
+  <script>
+  
+//   $( function() {
+//     var handle = $( "#handler-slider" );
+//     $( "#slider" ).slider({
+//       create: function() {
+//         handle.text( $( this ).slider( "value" ) );
+//       },
+//       slide: function( event, ui ) {
+//         handle.text( ui.value );
+//       }
+//     });
+//   } );
+  
+  
+//   var $range = document.querySelector('input'),
+//     $value = document.querySelector('span');
+
+// $range.addEventListener('input', function() {
+//   $value.textContent = this.value;
+// });
+  
+  
+  
+  </script>
+
+<style>
+
+.bs-glyphicons ul li a  {
+/* color:#2A3F54; */
+font-size:1.0em;
+color:#337ab7;
+
+
+
+}
+
+.hp_slide {
+width:100%;
+background:white;
+height:25px;
+
+}
+
+.hp_range {
+
+width:0;
+background:black;
+height:25px;
+
+} 
+
+/* .bs-glyphicons ul li a:hover  { */
+/* color:#5A738E!important; */
+/* font-size:1.2em; */
+
+/* } */
+
+</style>
+
+<style>
+
+#handler-slider {
+width: 3em;
+height: 1.6em;
+text-align: center;
+line-height: 1.6em;
+  }
+  
+</style>
+
+
+<div class="container body">
+home usuario
+
+	<div class="main_container">
+	
+	
+	
+		<div class="right_col" role="main">
+		
+
+
+<!-- 			<div id="mascara"></div> -->
+			<!-- top tiles -->
+			<!--           <div class="row tile_count"> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-user"></i> Total Users</span> -->
+			<!--               <div class="count">2500</div> -->
+			<!--               <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
+			<!--             </div> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span> -->
+			<!--               <div class="count">123.50</div> -->
+			<!--               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
+			<!--             </div> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-user"></i> Total Males</span> -->
+			<!--               <div class="count green">2,500</div> -->
+			<!--               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+			<!--             </div> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-user"></i> Total Females</span> -->
+			<!--               <div class="count">4,567</div> -->
+			<!--               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
+			<!--             </div> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-user"></i> Total Collections</span> -->
+			<!--               <div class="count">2,315</div> -->
+			<!--               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+			<!--             </div> -->
+			<!--             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+			<!--               <span class="count_top"><i class="fa fa-user"></i> Total Connections</span> -->
+			<!--               <div class="count">7,325</div> -->
+			<!--               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+			<!--             </div> -->
+
+			<!--            <p th:text="${usuario.username}">1 </p> -->
+
+
+			<!--           </div> -->
+
+
+<!-- 			<div class="col-md-8 col-sm-8 col-xs-8"> -->
+<!-- <div class="right_col" role="main"> -->
+		   
+		
+		 <div class="row" >
+		 
+		 
+
+
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>
+							Workspace<small>...</small>
+						</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-expanded="false"><i
+									class="fa fa-wrench"></i></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Settings 1</a></li>
+									<li><a href="#">Settings 2</a></li>
+								</ul></li>
+							<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					
+					
+					<div class="x_content">
+						
+						
+						
+						<div id="alerts">
+						
+							
+					<div class="alert alert-success" th:if="${mensagem}">
+                        <ul class="fa-ul">
+                          <li>
+                            <i class="fa fa-info-circle fa-lg fa-li"></i> These icons work great with the <code class="fa-spin"></code> class. Check out the
+                            <a href="../examples/#spinning" class="alert-link">spinning icons example</a>.
+<!--                          <span th:text=${mensagem}>sem mensagem</span> -->
+                         
+                          </li>
+                        </ul>
+                      </div>						
+						
+						
+						</div>
+						
+						
+						<div class="btn-toolbar editor" data-role="editor-toolbar"
+							data-target="#editor-one">
+							<div class="btn-group">
+								<a class="btn dropdown-toggle" data-toggle="dropdown"
+									title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn dropdown-toggle" data-toggle="dropdown"
+									title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
+									class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a data-edit="fontSize 5">
+											<p style="font-size: 17px">Huge</p>
+									</a></li>
+									<li><a data-edit="fontSize 3">
+											<p style="font-size: 14px">Normal</p>
+									</a></li>
+									<li><a data-edit="fontSize 1">
+											<p style="font-size: 11px">Small</p>
+									</a></li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
+									class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
+									title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a> <a
+									class="btn" data-edit="strikethrough" title="Strikethrough"><i
+									class="fa fa-strikethrough"></i></a> <a class="btn"
+									data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i
+									class="fa fa-underline"></i></a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn" data-edit="insertunorderedlist"
+									title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
+									class="btn" data-edit="insertorderedlist" title="Number list"><i
+									class="fa fa-list-ol"></i></a> <a class="btn" data-edit="outdent"
+									title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+								<a class="btn" data-edit="indent" title="Indent (Tab)"><i
+									class="fa fa-indent"></i></a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn" data-edit="justifyleft"
+									title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+								<a class="btn" data-edit="justifycenter"
+									title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+								<a class="btn" data-edit="justifyright"
+									title="Align Right (Ctrl/Cmd+R)"><i
+									class="fa fa-align-right"></i></a> <a class="btn"
+									data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
+									class="fa fa-align-justify"></i></a>
+							</div>
+ 
+ 
+ </div>
+
+						</div>
+
+
+						<div class="ln_solid"></div>
+
+
+
+						<form id="labnol" method="get">
+
+							<div class="speech">
+								<div class="">
+									<input type="text" name="q" id="transcript" placeholder=""
+										class="form-control" style="height: 10em; display: none;" />
+
+
+
+								</div>
+							</div>
+
+						</form>
+
+						<div class="form-inline">
+						
+							<div class="btn-group">
+<!-- th:src= "${filename}" -->
+<!-- ondurationchange="document.getElementById('pval').value = this.currentTime" -->
+								<audio id="demo"  th:src="${filename2}" src="audio/ata.mp3" ontimeupdate="AtualizaContadorAudio()"></audio>
+
+
+
+							
+							</div>
+							
+
+									<form action="form_upload" class="form-inline"  style="height:4.7em; min-width:8em;" enctype="multipart/form-data" method="post" >
+									
+									<div class="control-group">
+									<div class="controls" >
+									<div class="btn-group" >
+<!-- 									<div class="span"> -->
+									<div id="form-group" class="uploader">
+									
+										<input id="file" size="30" style="opacity: 1;" type="file"  name="file" class="uploader" hidden="true"></input>
+<!-- 									<br></br> -->
+										<input id="usuarioid" size="30" style="opacity: 1;" type="text"  name="usuarioid" th:value="${usuario.id}" class="" hidden="true"></input>
+<!-- 									<br></br> -->
+<!-- 									<br></br> -->
+										<span class="badge bg-orange" style="-moz-user-select: none;" th:text="${filenamef}">Nenhuma Mídia Selecionada</span>
+<!-- 									<span class="action" style="-moz-user-select: none;">Escolha Arquivo</span> -->
+									
+<!-- 									<span class="badge-sm bg-green lg" th:text="${filenamef}" th:value="${filenamef}"> nenhuma midias</span> -->
+
+									</div>
+									
+<!-- 									<input type="submit" value="Upload" class="btn-md btn-info" hidden="true"></input> -->
+
+<!-- 									</div> -->
+<!-- 									<br></br> -->
+									</div>
+									
+									<input type="submit" value="Upload" class="btn-sm btn-primary" ></input>
+									
+									</div>
+									
+
+									
+									</div>
+									
+
+								
+									</form>	
+									
+
+
+								
+								</div>
+								
+
+								
+	
+							
+				<div class="bs-docs-section">
+					 <div class="bs-glyphicons" style="height:5.5em;">
+                        <ul class="bs-glyphicons-list">
+
+                          <li>
+                          <a class="" onclick="startDictation()">
+                            <span class="glyphicon glyphicon-bullhorn" aria-hidden="false"></span>
+                            <span class="glyphicon-class">Fale</span>
+                         	</a>
+                         
+                          </li>
+
+                          <li>
+                           <a class="" onclick="document.getElementById('demo').play()">
+                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                            <span class="glyphicon-class" onclick="document.getElementById('demo').play()"  >Play</span>
+						</a>
+                          </li>
+
+                          <li>
+                          <a class=" " onclick="CopiareColar()">
+                            <span class="glyphicon glyphicon-copy" aria-hidden="false"></span>
+                            <span class="glyphicon-class">Copiar</span>
+							</a>
+                          </li>
+
+                          <li>
+                          <a class="" onclick="document.getElementById('demo').pause()">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="false"></span>
+                            <span class="glyphicon-class">Pause</span>
+                          	 </a>
+                          
+                          
+                          </li>
+                          
+                             <li>
+                             <a class="" onclick="document.getElementById('demo').volume+=0.1">
+                            <span class="glyphicon glyphicon-volume-up" aria-hidden="false"></span>
+                            <span class="glyphicon-class">Mais</span>
+							</a>
+                        
+                          </li>
+                          
+                          <li>
+                           <a class="" onclick="document.getElementById('demo').volume-=0.1">
+                            <span class="glyphicon glyphicon-volume-down" aria-hidden="false"></span>
+                            <span class="glyphicon-class">Menos</span>
+							</a>
+                         
+                          </li>
+                                                    
+                          
+                          </ul>
+                          
+                          
+<!--     <div class="btn-group"> -->
+							
+							
+<!-- <div class="hp_slide"> -->
+<!-- slide -->
+<!--      <progress class="hp_range" > -->
+<!--      progresso -->
+<!--      </progress> -->
+<!-- </div> -->
+<!-- </div> -->
+
+<!-- <input type="range" id="weight" min="0" value="0.5" max="1" step="0.1" onchange="document.getElementById('demo').currentTime =this.currentTime "> -->
+<!-- </input> -->
+
+
+                          </div>
+                          
+         <div class="x_panel" style="">
+         
+                          
+             <div class="x_content">
+               
+<!--                 <div class="row grid_slider"> -->
+                
+<!--                <div class="col-md-6 col-sm-6 col-xs-12"> -->
+                
+<!--                    <div id="slider"> -->
+<!-- 					<div id="handler-slider" class="ui-slider-handle"> </div> -->
+<!-- 					</div> -->
+					
+					<div id="progress" class="progress">
+<!-- 					  onblur="document.getElementById('pval').value = this.value - this.max" -->
+<!-- 					  th:text="${#weight}" -->
+					 
+<!-- 					  <p id="pval" text="sasa" clas="sr_only"> </p> -->
+					
+					<div  id="weight" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
+  							aria-valuemin="0" aria-valuemax="" >
+  							
+<!--   						 <input id="pval" value="0%" hidden="true"></input> -->
+  						 <p  id="pval" class="label label-success" text="0%">
+  						 
+  						  </p>
+  							
+  							
+  							
+  					
+  					</div>			
+  					
+<!--   					  <span  id="pval" class="label"  value="asasasassa" >sdasd</span> -->
+  					
+					 
+<!-- 					 <span  class="sr-only" id="pval" text="" > 0% </span> -->
+					
+					 </div> 
+					 
+<!-- 					</div> -->
+					
+
+<!-- 				</div> -->
+				</div>
+<!-- 				<div class="clearfix"></div> -->
+				</div>
+				
+
+
+
+
+<!--  			<div class="x_content"> -->
+<!--                     <div class="row grid_slider"> -->
+
+<!--                      <div class="col-md-6 col-sm-6 col-xs-12"> -->
+<!--                         <p>Prevent one from dragging the labels</p> -->
+<!--                       </div> -->
+                            
+<!--                     </div> -->
+                    
+                    
+<!--                   </div> -->
+               
+               
+               
+               
+               
+                </div>
+
+
+
+
+
+
+
+								
+					<h3>	<span class="label label-primary" style="-moz-user-select: none;">Resultado da Transcricao</span> </h3>
+
+							
+						<textarea name="desc" id="desc" placeholder="Aqui sera Transcrito"
+							class="resizable_textarea form-control" rows="4" style="min-heigth:8em;"
+							 > 
+                  
+                  		</textarea>
+
+							
+
+
+                 <h3> <span  class="label label-primary" style="-moz-user-select: none;">Resultado de Todos os Audios</span> </h3>
+                  		
+
+						
+						<textarea name="desc2" id="desc2" placeholder="Aqui sera Colado"
+							class="resizable_textarea form-control" rows="4" style="min-heigth:10em;"
+							 > 
+                  
+                  		</textarea>
+                  		
+<!--                   		</div> -->
+                  		
+
+
+
+
+ <div class="clearfix"></div>
+</div>
+
+ <div class="clearfix"></div>
+</div>
+ <div class="clearfix"></div>
+</div>
+ <div class="clearfix"></div>
+</div>
+ <div class="clearfix"></div>
+</div>
+<!--  <div class="clearfix"></div> -->
+<!-- </div> -->
+<!--  <div class="clearfix"></div> -->
+<!-- </div> -->
+<!--  <div class="clearfix"></div> -->
+
+<footer th:replace="fragmentos/footer :: footer" />
+
+
+
+
+</html>
+
