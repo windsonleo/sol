@@ -57,12 +57,9 @@ public class ConfiguracaoSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("*/img/**").permitAll()
 				.antMatchers("*/css/**").permitAll()
 				.antMatchers("*/js/**").permitAll()
-
 				.antMatchers("/login").permitAll()
-//				.antMatchers("/registration").permitAll()
-				.antMatchers("/home").hasRole("MEMBRO")
-
-				.antMatchers("/usuario/**").hasAuthority("MEMBRO").anyRequest()
+				.antMatchers("/home").hasAnyRole("MEMBRO","ADM")
+				.antMatchers("/usuario/**").hasAnyRole("MEMBRO","ADM").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
 				.loginPage("/login").failureUrl("/error/erro")
 				.defaultSuccessUrl("/usuario/home")
